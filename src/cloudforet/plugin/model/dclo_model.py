@@ -256,21 +256,26 @@ _METADATA = {
                     'name': '교정 세부정보',
                     'options': {
                         'fields': [
-                            # {
-                            #     'type': 'text',
-                            #     'key': 'code',
-                            #     'name': 'Code'
-                            # },
-                            # {
-                            #     'type': 'text',
-                            #     'key': 'name',
-                            #     'name': 'name',
-                            # },
-                            # {
-                            #     'type': 'text',
-                            #     'key': 'report_lv',
-                            #     'name': 'Report Lv',
-                            # },
+                            {
+                                'type': 'text',
+                                'key': 'code',
+                                'name': 'Code'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'name',
+                                'name': 'Name',
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'category',
+                                'name': 'Category',
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'report_lv',
+                                'name': 'Severity',
+                            },
                             {
                                 'type': 'text',
                                 'key': 'desc',
@@ -308,7 +313,12 @@ _METADATA = {
                             {
                                 'type': 'list',
                                 'key': 'comNum',
-                                'name': 'Compliance Number'
+                                'name': 'Compliance Number',
+                                'item': {
+                                        'type': 'badge',               
+                                        'options': {}, 
+                                },
+                                'delimiter':', ' 
                             },
                         ],
                         'root_path': 'data.findings.compliance'
@@ -341,8 +351,8 @@ _METADATA = {
                             },
                             {
                                 'type': 'more',
+                                'key': '',
                                 'name': 'findings',
-                                'value': 'view',
                                 "options": {
                                     "sub_key": "findings", 
                                     "layout": {
