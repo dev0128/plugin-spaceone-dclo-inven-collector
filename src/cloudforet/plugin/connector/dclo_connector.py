@@ -21,14 +21,13 @@ class DcloConnector(BaseConnector):
             'provider_name': provider_name,
             'payload': [
                 {
-                    "status": "N/A",
                     "id": "REME-0100900001",
                     "code": "AWS-CDN-001",
                     "name": "CloudFront 기본 루트 객체 구성 여부",
                     "category": "CloudFront",
                     "report_lv": "Medium",
                     "resource": "cloudfront",
-                    "weakState": "N/A",
+                    "status": "N/A",
                     "findings": {
                         "defaultInfo":{
                                         "desc": "- 기본 루트 객체를 구성하여 운영하는 경우 사용자가 도메인 이름만 입력했을 때 미리 구성된 기본 루트 객체를 반환하여 의도치 않은 리소스 노출(디렉토리 리스팅)을 방지하고 서버의 기본 오류 페이지를 통한 서버 정보 노출을 막을수 있습니다.", 
@@ -66,19 +65,18 @@ class DcloConnector(BaseConnector):
                                             ]
                                         }
                                      ],
-                        "reason": "항목과 매칭되는 서비스/리소스가 없음",
-                        "json": ""
+                        "flag": [],
+                        "secure": []
                     }
                 },
                 {
-                    "status": "CLEAR",
                     "id": "REME-0100500005",
                     "code": "AWS-RDS-005",
                     "category": "RDS",
                     "name": "RDS 로깅 설정",
                     "report_lv": "Low",
                     "resource": "rds",
-                    "weakState": "취약",
+                    "status": 'True',
                     "findings": {
                         "defaultInfo":{
                                         "desc": "- 기본 루트 객체를 구성하여 운영하는 경우 사용자가 도메인 이름만 입력했을 때 미리 구성된 기본 루트 객체를 반환하여 의도치 않은 리소스 노출(디렉토리 리스팅)을 방지하고 서버의 기본 오류 페이지를 통한 서버 정보 노출을 막을수 있습니다.", 
@@ -102,8 +100,8 @@ class DcloConnector(BaseConnector):
                                             ]
                                         },
                                      ],
-                        "reason": "",
-                        "json": ""
+                        "flag": [{'id':'q1v2eqweq', 'name': 'test', 'resource_type': "test", 'region' : 'test', 'findings': {}},{'id':'q1v2eqweq', 'name': 'test', 'resource_type': "test", 'region' : 'test', 'findings': {'a':1 , 'b':2, 'c': {'1': 1, '2': [1,2,3]}}}],
+                        "secure": [{'id':'q1v2eqweq', 'name': 'test', 'resource_type': "test", 'region' : 'test', 'findings': {}},{'id':'q1v2eqweq', 'name': 'test', 'resource_type': "test", 'region' : 'test', 'findings': {}}]
                     }
                 }
             ]

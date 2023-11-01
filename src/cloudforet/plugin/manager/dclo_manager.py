@@ -51,7 +51,7 @@ class DcloManager(CollectorManager):
 
         for code in payload_codes:
             code_result = {
-                'name': code['code'],
+                'code': code['code'],
                 'reference': {
                     'resource_id': code['code']
                 },

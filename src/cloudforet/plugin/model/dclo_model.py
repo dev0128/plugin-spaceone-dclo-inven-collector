@@ -5,26 +5,27 @@ _METADATA = {
     'view': {
         'search': [
             {
-                'key': 'data.code',
-                'name': 'Code'
-            },
-            {
-                'key': 'data.resource',
-                'name': 'Resource',
-            },
-            {
                 'key': 'data.name',
                 'name': 'Name'
             },
             {
+                'key': 'data.code',
+                'name': 'Code'
+            },
+            {
+                'key': 'data.category',
+                'name': 'Service',
+            },
+            {
                 'key': 'data.report_lv',
-                'name': 'Report Lv',
+                'name': 'Severity',
                 'enums': [
                     'High',
                     'Medium',
                     'Low',
                 ]
             },
+            # compliace_category ?
         ],
         'table': {
             'layout': {
@@ -38,11 +39,6 @@ _METADATA = {
                     'fields': [
                         {
                             'type': 'text',
-                            'key': 'data.code',
-                            'name': 'Code'
-                        },
-                        {
-                            'type': 'text',
                             'key': 'data.resource',
                             'name': 'Resource',
                         },
@@ -54,7 +50,7 @@ _METADATA = {
                         {
                             'type': 'enum',
                             'key': 'data.report_lv',
-                            'name': 'Report Lv',
+                            'name': 'Severity',
                             'options': {
                                 'High': {
                                     'type': 'badge',
@@ -77,15 +73,31 @@ _METADATA = {
                             }
                         },
                         {
-                            'type': 'text',
+                            'type': 'enum',
                             'key': 'data.status',
-                            'name': 'Weak State'
+                            'name': 'Status',
+                            'options': {
+                                'True': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'crimson.500'
+                                    }
+                                },
+                                'False': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'royalblue.500'
+                                    }
+                                },
+                                'N/A': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'dimgray.500'
+                                    }
+                                }
+                            }
+
                         },
-                        {
-                            'type': 'text',
-                            'key': 'data.weakState',
-                            'name': 'Weak State'
-                        }
                     ]
                 }
             }
@@ -167,7 +179,7 @@ _METADATA = {
                 }
             },
             {
-                'name': 'Good Count',
+                'name': 'Secure Count',
                 'type': 'summary',
                 'options': {
                     'value_options': {
@@ -214,34 +226,34 @@ _METADATA = {
                     ]
                 }
             },
-            # {
-            #     'name': 'Total Score',
-            #     'type': 'summary',
-            #     'options': {
-            #         'value_options': {
-            #             'key': 'value',
-            #             'options': {
-            #                 'default': 0
-            #             }
-            #         }
-            #     },
-            #     'query': {
-            #         'aggregate': [
-            #             {
-            #                 'count': {
-            #                     'name': 'value'
-            #                 }
-            #             }
-            #         ],
-            #         'filter': []
-            #     }
-            # },
+            {
+                'name': 'Total Score',
+                'type': 'summary',
+                'options': {
+                    'value_options': {
+                        'key': 'value',
+                        'options': {
+                            'default': 0
+                        }
+                    }
+                },
+                'query': {
+                    'aggregate': [
+                        {
+                            'count': {
+                                'name': 'value'
+                            }
+                        }
+                    ],
+                    'filter': []
+                }
+            },
         ],
         'sub_data': {
             'layouts': [
                 {
                     'type': 'item',
-                    'name': 'Details',
+                    'name': '교정 세부정보',
                     'options': {
                         'fields': [
                             # {
@@ -301,9 +313,98 @@ _METADATA = {
                         ],
                         'root_path': 'data.findings.compliance'
                     }
-                }
-                # reason 탭?
-                # JSON 탭
+                },
+                {
+                    'type': 'table',
+                    'name': 'Flag Details',
+                    'options': {
+                        'fields': [
+                            {
+                                'type': 'text',
+                                'key': 'id',
+                                'name': 'Resource ID'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'name',
+                                'name': 'Resource Name'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'resource_type',
+                                'name': 'Resource Type'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'region',
+                                'name': 'Region'
+                            },
+                            {
+                                'type': 'more',
+                                'key': 'findings',
+                                'name': 'findings',
+                                "options": {
+                                    "layout": {
+                                        "name": "Flag Details",
+                                        "type": "popup", 
+                                        "options": { 
+                                            "layout": { 
+                                                "type": "raw", 
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        'root_path': 'data.findings.flag'
+                    }
+                },
+                {
+                    'type': 'table',
+                    'name': 'Secure Details',
+                    'options': {
+                        'fields': [
+                            {
+                                'type': 'text',
+                                'key': 'id',
+                                'name': 'Resource ID'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'name',
+                                'name': 'Resource Name'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'resource_type',
+                                'name': 'Resource Type'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'region',
+                                'name': 'Region'
+                            },
+                            {
+                                'type': 'more',
+                                'key': 'findings',
+                                'name': 'findings',
+                                "options": {
+                                    "layout": {
+                                        "name": "Flag Details",
+                                        "type": "popup",
+                                        "options": {
+                                            "layout": { 
+                                                "type": "raw", 
+                                                
+                                            }
+                                        }
+                                    }
+                              }
+                            }
+                        ],
+                        'root_path': 'data.findings.secure'
+                    }
+                },
             ]
         }
     }
