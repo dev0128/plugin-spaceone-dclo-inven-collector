@@ -315,7 +315,7 @@ _METADATA = {
                                 'key': 'comNum',
                                 'name': 'Compliance Number',
                                 "options": {
-                                            "delimiter": ", ",
+                                            "delimiter": " ",
                                             "item": {
                                                 "options": {
                                                     "outline_color": "violet.500"
@@ -355,7 +355,7 @@ _METADATA = {
                             },
                             {
                                 'type': 'more',
-                                'key': '',
+                                'key': 'id',
                                 'name': 'findings',
                                 "options": {
                                     "sub_key": "findings", 
