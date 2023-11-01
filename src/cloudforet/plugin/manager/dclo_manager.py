@@ -51,7 +51,7 @@ class DcloManager(CollectorManager):
 
         for code in payload_codes:
             code_result = {
-                'code': code['code'],
+                'name': code['code'],
                 'reference': {
                     'resource_id': code['code']
                 },
@@ -63,18 +63,18 @@ class DcloManager(CollectorManager):
                                 'resource_type': 'inventory.CloudServiceType',
                                 'options': {
                                     'provider': self.provider,
-                                    'cloud_service_group': self.cloud_service_group,
-                                    'cloud_service_type': self.cloud_service_type,
+                                    # 'cloud_service_group': self.cloud_service_group,
+                                    # 'cloud_service_type': self.cloud_service_type,
                                 }
                             }
                         }
                     }
                 },
-                # 'account': design_member['department'],
+                # 'account': 'test',
                 'provider': self.provider,
-                'cloud_service_group': self.cloud_service_group,
-                'cloud_service_type': self.cloud_service_type,
-                'region_code': 'global'
+                # 'cloud_service_group': self.cloud_service_group,
+                # 'cloud_service_type': self.cloud_service_type,
+                # 'region_code': 'global'
             }
 
             results.append(code_result)

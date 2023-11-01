@@ -39,7 +39,7 @@ _METADATA = {
                     'fields': [
                         {
                             'type': 'text',
-                            'key': 'data.resource',
+                            'key': 'data.category',
                             'name': 'Resource',
                         },
                         {
@@ -314,11 +314,15 @@ _METADATA = {
                                 'type': 'list',
                                 'key': 'comNum',
                                 'name': 'Compliance Number',
-                                'item': {
-                                        'type': 'badge',               
-                                        'options': {}, 
+                                "options": {
+                                            "delimiter": ", ",
+                                            "item": {
+                                                "options": {
+                                                    "outline_color": "violet.500"
+                                                },
+                                                "type": "badge"
+                                            }
                                 },
-                                'delimiter':', ' 
                             },
                         ],
                         'root_path': 'data.findings.compliance'
@@ -356,7 +360,7 @@ _METADATA = {
                                 "options": {
                                     "sub_key": "findings", 
                                     "layout": {
-                                        "name": "Flag Details",
+                                        "name": "Flag meta",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
@@ -397,16 +401,16 @@ _METADATA = {
                             },
                             {
                                 'type': 'more',
-                                'key': 'findings',
+                                'key': '',
                                 'name': 'findings',
                                 "options": {
+                                    "sub_key": "findings", 
                                     "layout": {
-                                        "name": "Flag Details",
+                                        "name": "Secure meta",
                                         "type": "popup",
                                         "options": {
                                             "layout": { 
-                                                "type": "raw", 
-                                                
+                                                "type": "raw",
                                             }
                                         }
                                     }
