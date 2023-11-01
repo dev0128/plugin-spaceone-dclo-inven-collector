@@ -26,10 +26,13 @@ class DcloConnector(BaseConnector):
                     "name": "CloudFront 기본 루트 객체 구성 여부",
                     "category": "CloudFront",
                     "report_lv": "Medium",
-                    "resource": "cloudfront",
                     "status": "N/A",
                     "findings": {
                         "defaultInfo":{
+                                        "code": "AWS-CDN-001",
+                                        "name": "CloudFront 기본 루트 객체 구성 여부",
+                                        "category": "CloudFront",
+                                        "report_lv": "Medium",
                                         "desc": "- 기본 루트 객체를 구성하여 운영하는 경우 사용자가 도메인 이름만 입력했을 때 미리 구성된 기본 루트 객체를 반환하여 의도치 않은 리소스 노출(디렉토리 리스팅)을 방지하고 서버의 기본 오류 페이지를 통한 서버 정보 노출을 막을수 있습니다.", 
                                         "standard": "AWS CloudFront에서 기본 루트 객체를 구성하였을 경우 양호", 
                                         "how_act": " [CloudFront] > [배포] > 생성된 배포 선택 > [일반] > [편집] > 기본값 루트 객체 작성(환경에 맞게 루트 요청시 반환할 파일 이름 작성) > [변경 사항 저장]"
@@ -75,10 +78,13 @@ class DcloConnector(BaseConnector):
                     "category": "RDS",
                     "name": "RDS 로깅 설정",
                     "report_lv": "Low",
-                    "resource": "rds",
                     "status": 'True',
                     "findings": {
                         "defaultInfo":{
+                                        "code": "AWS-RDS-005",
+                                        "name": "RDS 로깅 설정",
+                                        "category": "RDS",
+                                        "report_lv": "Low",
                                         "desc": "- 기본 루트 객체를 구성하여 운영하는 경우 사용자가 도메인 이름만 입력했을 때 미리 구성된 기본 루트 객체를 반환하여 의도치 않은 리소스 노출(디렉토리 리스팅)을 방지하고 서버의 기본 오류 페이지를 통한 서버 정보 노출을 막을수 있습니다.", 
                                         "standard": "AWS CloudFront에서 기본 루트 객체를 구성하였을 경우 양호", 
                                         "how_act": " [CloudFront] > [배포] > 생성된 배포 선택 > [일반] > [편집] > 기본값 루트 객체 작성(환경에 맞게 루트 요청시 반환할 파일 이름 작성) > [변경 사항 저장]"

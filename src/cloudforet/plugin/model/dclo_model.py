@@ -341,9 +341,10 @@ _METADATA = {
                             },
                             {
                                 'type': 'more',
-                                'key': 'findings',
                                 'name': 'findings',
+                                'value': 'view',
                                 "options": {
+                                    "sub_key": "findings", 
                                     "layout": {
                                         "name": "Flag Details",
                                         "type": "popup", 
