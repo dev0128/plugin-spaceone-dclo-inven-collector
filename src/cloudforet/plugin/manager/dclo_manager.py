@@ -63,8 +63,8 @@ class DcloManager(CollectorManager):
                                 'resource_type': 'inventory.CloudServiceType',
                                 'options': {
                                     'provider': self.provider,
-                                    # 'cloud_service_group': self.cloud_service_group,
-                                    # 'cloud_service_type': self.cloud_service_type,
+                                    'cloud_service_group': self.cloud_service_group,
+                                    'cloud_service_type': self.cloud_service_type,
                                 }
                             }
                         }
