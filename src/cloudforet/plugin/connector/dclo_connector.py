@@ -1,123 +1,78 @@
 import logging
-from spaceone.core.error import ERROR_REQUIRED_PARAMETER
+import requests
+import json
+
+from time import sleep
+from uuid import uuid4
+
+from spaceone.core.error import ERROR_REQUIRED_PARAMETER, ERROR_REQUEST_TIMEOUT
 from spaceone.core.connector import BaseConnector
 
 _LOGGER = logging.getLogger(__name__)
 
-
+_DCLO_PLUGIN_URL = 'http://43.202.191.177/diag'
 class DcloConnector(BaseConnector):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def verify_client(self, options: dict, secret_data: dict, schema: str):
+        self._check_options_data(options)
         self._check_secret_data(secret_data)
 
-    def list_code(self, provider_name) -> dict:
-        """
-        """
+    def fetch_compliance_results(self, key_type, compliance, secret_data) -> dict:
+        diag_id = uuid4().hex
+
+        param = {
+            "diag_id": diag_id,
+            "type": key_type,
+            "arg_1": secret_data['aws_access_key'],
+            "arg_2": secret_data['aws_secret_key'],
+            "ruleset_id": compliance
+        }
+
+        res = requests.post(f"{_DCLO_PLUGIN_URL}/request", headers={'Content-Type': 'application/json'}, data=json.dumps(param))
+        result = {}
+
+        PENDING_TIME = 60
+        TIME_LIMIT_MINUTE = 30
+        
+        waiting_timer = 0
+        while True:
+            sleep(PENDING_TIME)
+            waiting_timer += PENDING_TIME
+
+            res = requests.get(f"{_DCLO_PLUGIN_URL}/result/{diag_id}")
+            content = json.loads(res.content)
+            status = content.get('status')
+
+            if status == 'end':
+                result = content.get('result', {})
+                break 
+            
+            if waiting_timer > PENDING_TIME * TIME_LIMIT_MINUTE:
+                raise ERROR_REQUEST_TIMEOUT(key='options.provider') 
 
         response = {
-            'provider_name': provider_name,
-            'payload': [
-                {
-                    "id": "REME-0100900001",
-                    "code": "AWS-CDN-001",
-                    "name": "CloudFront 기본 루트 객체 구성 여부",
-                    "category": "CloudFront",
-                    "report_lv": "Medium",
-                    "status": "N/A",
-                    "findings": {
-                        "defaultInfo":{
-                                        "code": "AWS-CDN-001",
-                                        "name": "CloudFront 기본 루트 객체 구성 여부",
-                                        "category": "CloudFront",
-                                        "report_lv": "Medium",
-                                        "desc": "- 기본 루트 객체를 구성하여 운영하는 경우 사용자가 도메인 이름만 입력했을 때 미리 구성된 기본 루트 객체를 반환하여 의도치 않은 리소스 노출(디렉토리 리스팅)을 방지하고 서버의 기본 오류 페이지를 통한 서버 정보 노출을 막을수 있습니다.", 
-                                        "standard": "AWS CloudFront에서 기본 루트 객체를 구성하였을 경우 양호", 
-                                        "how_act": " [CloudFront] > [배포] > 생성된 배포 선택 > [일반] > [편집] > 기본값 루트 객체 작성(환경에 맞게 루트 요청시 반환할 파일 이름 작성) > [변경 사항 저장]"
-                                      },
-                        "compliance":[
-                                        {
-                                            "name": "ISMS-P",
-                                            "type": "ISMS-P",
-                                            "comNum": [
-                                                "2.6.2",
-                                                "2.10.2-C"
-                                            ]
-                                        },
-                                        {
-                                            "name": "KISA-CSAP(표준)",
-                                            "type": "KISA-CSAP",
-                                            "comNum": [
-                                                "10.1.1"
-                                            ]
-                                        },
-                                        {
-                                            "name": "CSP 안전성 평가",
-                                            "type": "CSP",
-                                            "comNum": [
-                                                "10.1.1"
-                                            ]
-                                        },
-                                        {
-                                            "name": "ISO-27001",
-                                            "type": "ISO27001",
-                                            "comNum": [
-                                                "A.9.4.1"
-                                            ]
-                                        }
-                                     ],
-                        "flag": [],
-                        "secure": []
-                    }
-                },
-                {
-                    "id": "REME-0100500005",
-                    "code": "AWS-RDS-005",
-                    "category": "RDS",
-                    "name": "RDS 로깅 설정",
-                    "report_lv": "Low",
-                    "status": 'True',
-                    "findings": {
-                        "defaultInfo":{
-                                        "code": "AWS-RDS-005",
-                                        "name": "RDS 로깅 설정",
-                                        "category": "RDS",
-                                        "report_lv": "Low",
-                                        "desc": "- 기본 루트 객체를 구성하여 운영하는 경우 사용자가 도메인 이름만 입력했을 때 미리 구성된 기본 루트 객체를 반환하여 의도치 않은 리소스 노출(디렉토리 리스팅)을 방지하고 서버의 기본 오류 페이지를 통한 서버 정보 노출을 막을수 있습니다.", 
-                                        "standard": "AWS CloudFront에서 기본 루트 객체를 구성하였을 경우 양호", 
-                                        "how_act": " [CloudFront] > [배포] > 생성된 배포 선택 > [일반] > [편집] > 기본값 루트 객체 작성(환경에 맞게 루트 요청시 반환할 파일 이름 작성) > [변경 사항 저장]"
-                                      },
-                        "compliance":[
-                                        {
-                                            "name": "ISMS-P",
-                                            "type": "ISMS-P",
-                                            "comNum": [
-                                                "2.6.2",
-                                                "2.10.2-C"
-                                            ]
-                                        },
-                                        {
-                                            "name": "KISA-CSAP(표준)",
-                                            "type": "KISA-CSAP",
-                                            "comNum": [
-                                                "10.1.1"
-                                            ]
-                                        },
-                                     ],
-                        "flag": [{'id':'q1v2eqweq', 'name': 'test', 'resource_type': "test", 'region' : 'test', 'findings': {}},{'id':'q1v2eqweq', 'name': 'test', 'resource_type': "test", 'region' : 'test', 'findings': {'a':1 , 'b':2, 'c': {'1': 1, '2': [1,2,3]}}}],
-                        "secure": [{'id':'q1v2eqweq', 'name': 'test', 'resource_type': "test", 'region' : 'test', 'findings': {}},{'id':'q1v2eqweq', 'name': 'test', 'resource_type': "test", 'region' : 'test', 'findings': {}}]
-                    }
-                }
-            ]
+            'diag_id': diag_id,
+            'provider_name': 'aws',
+            'payload': result
         }
+        
         return response
 
     @staticmethod
-    def _check_secret_data(secret_data: dict):
-        if 'user_email' not in secret_data:
-            raise ERROR_REQUIRED_PARAMETER(key='secret_data.user_email')
+    def _check_options_data(options: dict):
+        if 'provider' not in options:
+            raise ERROR_REQUIRED_PARAMETER(key='options.provider')
 
-        if 'api_key' not in secret_data:
-            raise ERROR_REQUIRED_PARAMETER(key='secret_data.api_key')
+        if 'compliance_framework' not in options:
+            raise ERROR_REQUIRED_PARAMETER(key='options.compliance_framework')
+
+    @staticmethod
+    def _check_secret_data(secret_data: dict):
+        if 'aws_access_key_id' not in secret_data:
+            raise ERROR_REQUIRED_PARAMETER(key='secret_data.aws_access_key_id')
+
+        if 'aws_secret_access_key' not in secret_data:
+            raise ERROR_REQUIRED_PARAMETER(key='secret_data.aws_secret_access_key')

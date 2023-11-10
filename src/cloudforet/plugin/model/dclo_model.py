@@ -354,21 +354,21 @@ _METADATA = {
                                 'name': 'Region'
                             },
                             {
-                                'type': 'more',
-                                'key': 'id',
                                 'name': 'findings',
+                                'type': 'more',
+                                'key': 'output_display',
                                 "options": {
                                     "sub_key": "findings", 
                                     "layout": {
                                         "name": "Flag meta",
-                                        "type": "popup", 
-                                        "options": { 
+                                        "type": "popup",
+                                        "options": {
                                             "layout": { 
-                                                "type": "raw", 
+                                                "type": "raw",
                                             }
                                         }
                                     }
-                                }
+                              }
                             }
                         ],
                         'root_path': 'data.findings.flag'
@@ -400,9 +400,9 @@ _METADATA = {
                                 'name': 'Region'
                             },
                             {
-                                'type': 'more',
-                                'key': '',
                                 'name': 'findings',
+                                'type': 'more',
+                                'key': 'output_display',
                                 "options": {
                                     "sub_key": "findings", 
                                     "layout": {
