@@ -37,12 +37,12 @@ class DcloManager(CollectorManager):
                 resource_type='inventory.CloudServiceType'
             )
 
-            # Collect Cloud Services (Design members)
-            key_type, compliance = self._covert_options(options)
-            codes = self.dclo_connector.fetch_compliance_results(key_type, compliance, secret_data)
+            # Collect Cloud Services
+            key_type, compliance, diag_data = self._covert_options(options, secret_data)
+            compliance_results = self.dclo_connector.fetch_compliance_results(key_type, compliance, diag_data)
 
-            for code_result in self._make_compliance_results(codes):
-                yield self.make_response( code_result,
+            for compliance_result in self._make_compliance_results(compliance_results):
+                yield self.make_response( compliance_result,
                     {'1': ['reference.resource_id', 'provider', 'cloud_service_type', 'cloud_service_group', 'account']}
                 )
 
@@ -58,51 +58,53 @@ class DcloManager(CollectorManager):
                                                  f'(compliance_frameworks = {all_compliance_frameworks})')
 
 
-    def _covert_options(options):
+    def _covert_options(self, options, secret_data):
         # type 설정 secret 인지, role 인지
         selected_provider = options['provider']
+        
+        if "role_arn" in secret_data:
+            key_type = f'{selected_provider.upper()}-002'
+            diag_data = {"arg_1": secret_data['external_id'], "arg_2": secret_data['role_arn']}
+        else:
+            key_type = f'{selected_provider.upper()}-001'
+            diag_data = {"arg_1": secret_data['aws_access_key_id'], "arg_2": secret_data['aws_secret_access_key']}
 
-        # 키값이 바로 넘어오는지
         selected_compliance = options['compliance_framework']
         compliance = COMPLIANCE_FRAMEWORKS[selected_provider][selected_compliance]
 
-        return f'{selected_provider.upper()}-001', compliance
+        return key_type, compliance, diag_data 
 
-    def _make_compliance_results(self, codes):
-        results = []
-        diagnosis = codes.get('payload', {})
+    def _make_compliance_results(self, check_result):
+        diag_id = check_result.get('diag_id')
+        result = check_result.get('payload', {})
 
-        for code in payload_codes:
-            #? code_result 의 형식 의미
-            code_result = {
-                # 'name': code['code'],
-                # 'reference': {
-                #     'resource_id': code['code']
-                # },
-                'data': code,
-                'metadata': {
-                    'view': {
-                        'sub_data': {
-                            'reference': {
-                                'resource_type': 'inventory.CloudServiceType',
-                                'options': {
-                                    'provider': self.provider,
-                                    'cloud_service_group': self.cloud_service_group,
-                                    'cloud_service_type': self.cloud_service_type,
-                                }
+        compliance_result = {
+            'name': diag_id,
+            'reference': {
+                'resource_id': self.cloud_service_type,
+            },
+            'data': result,
+            'metadata': {
+                'view': {
+                    'sub_data': {
+                        'reference': {
+                            'resource_type': 'inventory.CloudServiceType',
+                            'options': {
+                                'provider': self.provider,
+                                'cloud_service_group': self.cloud_service_group,
+                                'cloud_service_type': self.cloud_service_type,
                             }
                         }
                     }
-                },
-                'account': 'test',
-                'provider': self.provider,
-                'cloud_service_group': self.cloud_service_group,
-                'cloud_service_type': self.cloud_service_type,
-                'region_code': 'global'
-            }
+                }
+            },
+            'account': diag_id,
+            'provider': self.provider,
+            'cloud_service_group': self.cloud_service_group,
+            'cloud_service_type': self.cloud_service_type,
+            'region_code': 'global'
+        }
 
-            results.append(code_result)
-
-        return results
+        return [compliance_result]
 
 

@@ -5,27 +5,9 @@ _METADATA = {
     'view': {
         'search': [
             {
-                'key': 'data.name',
-                'name': 'Name'
+                'key': 'data.ruleset_name',
+                'name': 'Ruleset Name'
             },
-            {
-                'key': 'data.code',
-                'name': 'Code'
-            },
-            {
-                'key': 'data.category',
-                'name': 'Service',
-            },
-            {
-                'key': 'data.report_lv',
-                'name': 'Severity',
-                'enums': [
-                    'High',
-                    'Medium',
-                    'Low',
-                ]
-            },
-            # compliace_category ?
         ],
         'table': {
             'layout': {
@@ -33,227 +15,34 @@ _METADATA = {
                 'type': 'query-search-table',
                 'options': {
                     'default_sort': {
-                        'key': 'data.code',
+                        'key': 'data.rulest_name',
                         'desc': False
                     },
                     'fields': [
                         {
                             'type': 'text',
-                            'key': 'data.category',
-                            'name': 'Resource',
+                            'key': 'data.rulest_name',
+                            'name': 'Ruleset Name',
                         },
                         {
                             'type': 'text',
-                            'key': 'data.name',
-                            'name': 'Name',
+                            'key': 'data.rulest_desc',
+                            'name': 'Description',
                         },
-                        {
-                            'type': 'enum',
-                            'key': 'data.report_lv',
-                            'name': 'Severity',
-                            'options': {
-                                'High': {
-                                    'type': 'badge',
-                                    'options': {
-                                        'background_color': 'coral.500'
-                                    }
-                                },
-                                'Medium': {
-                                    'type': 'badge',
-                                    'options': {
-                                        'background_color': 'peacock.500'
-                                    }
-                                },
-                                'Low': {
-                                    'type': 'badge',
-                                    'options': {
-                                        'background_color': 'indigo.500'
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            'type': 'enum',
-                            'key': 'data.status',
-                            'name': 'Status',
-                            'options': {
-                                'True': {
-                                    'type': 'badge',
-                                    'options': {
-                                        'background_color': 'crimson.500'
-                                    }
-                                },
-                                'False': {
-                                    'type': 'badge',
-                                    'options': {
-                                        'background_color': 'royalblue.500'
-                                    }
-                                },
-                                'N/A': {
-                                    'type': 'badge',
-                                    'options': {
-                                        'background_color': 'dimgray.500'
-                                    }
-                                }
-                            }
-
-                        },
+                        # 상중하 secure 갯수 있으면 좋겠다?
+                        # 점수?
                     ]
                 }
-            }
+            },
         },
         'widget': [
-            {
-                'name': 'High Count',
-                'type': 'summary',
-                'options': {
-                    'value_options': {
-                        'key': 'value',
-                        'options': {
-                            'default': 0
-                        }
-                    }
-                },
-                'query': {
-                    'aggregate': [
-                        {
-                            'count': {
-                                'name': 'value'
-                            }
-                        }
-                    ],
-                    'filter': [
-                        {'key': 'data.report_lv', 'value': 'High', 'operator': 'eq'},
-                        {'key': 'data.weakState', 'value': '취약', 'operator': 'eq'},
-                    ]
-                }
-            },
-            {
-                'name': 'Medium Count',
-                'type': 'summary',
-                'options': {
-                    'value_options': {
-                        'key': 'value',
-                        'options': {
-                            'default': 0
-                        }
-                    }
-                },
-                'query': {
-                    'aggregate': [
-                        {
-                            'count': {
-                                'name': 'value'
-                            }
-                        }
-                    ],
-                    'filter': [
-                        {'key': 'data.report_lv', 'value': 'Medium', 'operator': 'eq'},
-                        {'key': 'data.weakState', 'value': '취약', 'operator': 'eq'},
-                    ]
-                }
-            },
-            {
-                'name': 'Low Count',
-                'type': 'summary',
-                'options': {
-                    'value_options': {
-                        'key': 'value',
-                        'options': {
-                            'default': 0
-                        }
-                    }
-                },
-                'query': {
-                    'aggregate': [
-                        {
-                            'count': {
-                                'name': 'value'
-                            }
-                        }
-                    ],
-                    'filter': [
-                        {'key': 'data.report_lv', 'value': 'Low', 'operator': 'eq'},
-                        {'key': 'data.weakState', 'value': '취약', 'operator': 'eq'},
-                    ]
-                }
-            },
-            {
-                'name': 'Secure Count',
-                'type': 'summary',
-                'options': {
-                    'value_options': {
-                        'key': 'value',
-                        'options': {
-                            'default': 0
-                        }
-                    }
-                },
-                'query': {
-                    'aggregate': [
-                        {
-                            'count': {
-                                'name': 'value'
-                            }
-                        }
-                    ],
-                    'filter': [
-                        {'key': 'data.weakState', 'value': '양호', 'operator': 'eq'},
-                    ]
-                }
-            },
-            {
-                'name': 'N/A Count',
-                'type': 'summary',
-                'options': {
-                    'value_options': {
-                        'key': 'value',
-                        'options': {
-                            'default': 0
-                        }
-                    }
-                },
-                'query': {
-                    'aggregate': [
-                        {
-                            'count': {
-                                'name': 'value'
-                            }
-                        }
-                    ],
-                    'filter': [
-                        {'key': 'data.weakState', 'value': 'N/A', 'operator': 'eq'},
-                    ]
-                }
-            },
-            {
-                'name': 'Total Score',
-                'type': 'summary',
-                'options': {
-                    'value_options': {
-                        'key': 'value',
-                        'options': {
-                            'default': 0
-                        }
-                    }
-                },
-                'query': {
-                    'aggregate': [
-                        {
-                            'count': {
-                                'name': 'value'
-                            }
-                        }
-                    ],
-                    'filter': []
-                }
-            },
+            # 갯수 합치는 작업하면 좋을듯?
         ],
         'sub_data': {
             'layouts': [
                 {
-                    'type': 'item',
-                    'name': '교정 세부정보',
+                    'type': 'table',
+                    'name': 'Detail',
                     'options': {
                         'fields': [
                             {
@@ -263,13 +52,13 @@ _METADATA = {
                             },
                             {
                                 'type': 'text',
-                                'key': 'name',
-                                'name': 'Name',
+                                'key': 'category',
+                                'name': 'Category',
                             },
                             {
                                 'type': 'text',
-                                'key': 'category',
-                                'name': 'Category',
+                                'key': 'name',
+                                'name': 'Name',
                             },
                             {
                                 'type': 'text',
@@ -278,133 +67,15 @@ _METADATA = {
                             },
                             {
                                 'type': 'text',
-                                'key': 'desc',
-                                'name': 'Description',
+                                'key': 'status',
+                                'name': 'Status',
                             },
                             {
-                                'type': 'text',
-                                'key': 'standard',
-                                'name': 'Standard',
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'how_act',
-                                'name': 'How to Act',
-                            },
-                        ],
-                        'root_path': 'data.findings.defaultInfo'
-                    }
-                },
-                {
-                    'type': 'table',
-                    'name': 'Compliance',
-                    'options': {
-                        'fields': [
-                            {
-                                'type': 'text',
-                                'key': 'name',
-                                'name': 'Name'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'type',
-                                'name': 'Compliance Type'
-                            },
-                            {
-                                'type': 'list',
-                                'key': 'comNum',
-                                'name': 'Compliance Number',
-                                "options": {
-                                            "delimiter": " ",
-                                            "item": {
-                                                "options": {
-                                                    "outline_color": "violet.500"
-                                                },
-                                                "type": "badge"
-                                            }
-                                },
-                            },
-                        ],
-                        'root_path': 'data.findings.compliance'
-                    }
-                },
-                {
-                    'type': 'table',
-                    'name': 'Flag Details',
-                    'options': {
-                        'fields': [
-                            {
-                                'type': 'text',
-                                'key': 'id',
-                                'name': 'Resource ID'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'name',
-                                'name': 'Resource Name'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'resource_type',
-                                'name': 'Resource Type'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'region',
-                                'name': 'Region'
-                            },
-                            {
-                                'name': 'findings',
+                                'name': 'Secure Details',
                                 'type': 'more',
-                                'key': 'output_display',
-                                "options": {
-                                    "sub_key": "findings", 
-                                    "layout": {
-                                        "name": "Flag meta",
-                                        "type": "popup",
-                                        "options": {
-                                            "layout": { 
-                                                "type": "raw",
-                                            }
-                                        }
-                                    }
-                              }
-                            }
-                        ],
-                        'root_path': 'data.findings.flag'
-                    }
-                },
-                {
-                    'type': 'table',
-                    'name': 'Secure Details',
-                    'options': {
-                        'fields': [
-                            {
-                                'type': 'text',
                                 'key': 'id',
-                                'name': 'Resource ID'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'name',
-                                'name': 'Resource Name'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'resource_type',
-                                'name': 'Resource Type'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'region',
-                                'name': 'Region'
-                            },
-                            {
-                                'name': 'findings',
-                                'type': 'more',
-                                'key': 'output_display',
                                 "options": {
-                                    "sub_key": "findings", 
+                                    "sub_key": "good_key", 
                                     "layout": {
                                         "name": "Secure meta",
                                         "type": "popup",
@@ -414,10 +85,27 @@ _METADATA = {
                                             }
                                         }
                                     }
-                              }
-                            }
+                                }
+                            },
+                            {
+                                'name': 'Flag Details',
+                                'type': 'more',
+                                'key': 'id',
+                                "options": {
+                                    "sub_key": "flag_key", 
+                                    "layout": {
+                                        "name": "Flag meta",
+                                        "type": "popup",
+                                        "options": {
+                                            "layout": { 
+                                                "type": "raw",
+                                            }
+                                        }
+                                    }
+                                }
+                            },
                         ],
-                        'root_path': 'data.findings.secure'
+                        'root_path': 'data.findings'
                     }
                 },
             ]
