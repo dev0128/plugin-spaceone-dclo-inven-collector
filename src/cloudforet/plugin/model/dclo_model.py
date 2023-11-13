@@ -15,28 +15,199 @@ _METADATA = {
                 'type': 'query-search-table',
                 'options': {
                     'default_sort': {
-                        'key': 'data.rulest_name',
+                        'key': 'data.ruleset_name',
                         'desc': False
                     },
                     'fields': [
                         {
                             'type': 'text',
-                            'key': 'data.rulest_name',
+                            'key': 'data.ruleset_name',
                             'name': 'Ruleset Name',
                         },
                         {
                             'type': 'text',
-                            'key': 'data.rulest_desc',
+                            'key': 'data.ruleset_desc',
                             'name': 'Description',
                         },
-                        # 상중하 secure 갯수 있으면 좋겠다?
-                        # 점수?
+                        {
+                            'type': 'text',
+                            'key': 'data.total_count.H',
+                            'name': 'High',
+                        },
+                        {
+                            'type': 'text',
+                            'key': 'data.total_count.M',
+                            'name': 'Medium',
+                        },
+                        {
+                            'type': 'text',
+                            'key': 'data.total_count.L',
+                            'name': 'Low',
+                        },
+                        {
+                            'type': 'text',
+                            'key': 'data.total_count.Secure',
+                            'name': 'Secure',
+                        },
+                        {
+                            'type': 'text',
+                            'key': 'data.total_count.N/A',
+                            'name': 'N/A',
+                        },
+                         {
+                            'type': 'text',
+                            'key': 'data.total_count.Score',
+                            'name': 'Score',
+                        },
                     ]
                 }
             },
         },
         'widget': [
-            # 갯수 합치는 작업하면 좋을듯?
+            {
+                'name': 'High Count',
+                'type': 'summary',
+                'options': {
+                    'value_options': {
+                        'key': 'value',
+                        'options': {
+                            'default': 0
+                        }
+                    }
+                },
+                'query': {
+                    'aggregate': [
+                        {
+                            'count': {
+                                'name': 'value'
+                            }
+                        }
+                    ],
+                    'filter': [
+                        {'key': 'data.total_count.H', 'value': 'High', 'operator': 'eq'},
+                    ]
+                }
+            },
+            {
+                'name': 'Medium Count',
+                'type': 'summary',
+                'options': {
+                    'value_options': {
+                        'key': 'value',
+                        'options': {
+                            'default': 0
+                        }
+                    }
+                },
+                'query': {
+                    'aggregate': [
+                        {
+                            'count': {
+                                'name': 'value'
+                            }
+                        }
+                    ],
+                    'filter': [
+                        {'key': 'data.total_count.M', 'value': 'Medium', 'operator': 'eq'},
+                    ]
+                }
+            },
+            {
+                'name': 'Low Count',
+                'type': 'summary',
+                'options': {
+                    'value_options': {
+                        'key': 'value',
+                        'options': {
+                            'default': 0
+                        }
+                    }
+                },
+                'query': {
+                    'aggregate': [
+                        {
+                            'count': {
+                                'name': 'value'
+                            }
+                        }
+                    ],
+                    'filter': [
+                        {'key': 'data.total_count.L', 'value': 'Low', 'operator': 'eq'},
+                    ]
+                }
+            },
+            {
+                'name': 'Secure Count',
+                'type': 'summary',
+                'options': {
+                    'value_options': {
+                        'key': 'value',
+                        'options': {
+                            'default': 0
+                        }
+                    }
+                },
+                'query': {
+                    'aggregate': [
+                        {
+                            'count': {
+                                'name': 'value'
+                            }
+                        }
+                    ],
+                    'filter': [
+                        {'key': 'data.total_count.Secure', 'value': 'Medium', 'operator': 'eq'},
+                    ]
+                }
+            },
+            {
+                'name': 'N/A Count',
+                'type': 'summary',
+                'options': {
+                    'value_options': {
+                        'key': 'value',
+                        'options': {
+                            'default': 0
+                        }
+                    }
+                },
+                'query': {
+                    'aggregate': [
+                        {
+                            'count': {
+                                'name': 'value'
+                            }
+                        }
+                    ],
+                    'filter': [
+                        {'key': 'data.total_count.N/A', 'value': 'N/A', 'operator': 'eq'},
+                    ]
+                }
+            },
+            {
+                'name': 'Total Score',
+                'type': 'summary',
+                'options': {
+                    'value_options': {
+                        'key': 'value',
+                        'options': {
+                            'default': 0
+                        }
+                    }
+                },
+                'query': {
+                    'aggregate': [
+                        {
+                            'count': {
+                                'name': 'value'
+                            }
+                        }
+                    ],
+                    'filter': [
+                        {'key': 'data.total_count.N/A', 'value': 'N/A', 'operator': 'eq'},
+                    ]
+                }
+            },
         ],
         'sub_data': {
             'layouts': [
@@ -67,7 +238,7 @@ _METADATA = {
                             },
                             {
                                 'type': 'text',
-                                'key': 'status',
+                                'key': 'flag',
                                 'name': 'Status',
                             },
                             {

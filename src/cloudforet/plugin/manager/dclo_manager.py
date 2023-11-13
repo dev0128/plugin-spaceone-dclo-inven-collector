@@ -80,6 +80,7 @@ class DcloManager(CollectorManager):
 
         compliance_result = {
             'name': diag_id,
+            'test': "",
             'reference': {
                 'resource_id': self.cloud_service_type,
             },

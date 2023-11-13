@@ -12,7 +12,7 @@ _LOGGER = logging.getLogger(__name__)
 
 PENDING_SECOND = 60
 TIME_LIMIT_MINUTE = 30
-_DCLO_PLUGIN_URL = 'http://43.202.191.177/diag'
+DCLO_PLUGIN_URL = 'http://43.202.191.177/diag'
 class DcloConnector(BaseConnector):
 
     def __init__(self, *args, **kwargs):
@@ -36,14 +36,14 @@ class DcloConnector(BaseConnector):
 
         result = {}
                 
-        res = requests.post(f"{_DCLO_PLUGIN_URL}/request", headers={'Content-Type': 'application/json'}, data=json.dumps(param))
+        res = requests.post(f"{DCLO_PLUGIN_URL}/request", headers={'Content-Type': 'application/json'}, data=json.dumps(param))
         waiting_timer = 0
 
         while True:
             sleep(PENDING_SECOND)
             waiting_timer += PENDING_SECOND
 
-            res = requests.get(f"{_DCLO_PLUGIN_URL}/result/{diag_id}")
+            res = requests.get(f"{DCLO_PLUGIN_URL}/result/{diag_id}")
             content = json.loads(res.content)
             status = content.get('status')
 
