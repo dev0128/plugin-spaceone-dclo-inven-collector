@@ -12,7 +12,7 @@ _LOGGER = logging.getLogger(__name__)
 
 PENDING_SECOND = 60
 TIME_LIMIT_MINUTE = 30
-DCLO_PLUGIN_URL = 'http://43.202.191.177/diag'
+DCLO_PLUGIN_URL = 'https://spaceonedev.d-clo.com/diag'
 class DcloConnector(BaseConnector):
 
     def __init__(self, *args, **kwargs):
