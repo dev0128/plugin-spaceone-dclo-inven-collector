@@ -5,8 +5,34 @@ _METADATA = {
     'view': {
         'search': [
             {
-                'key': 'data.ruleset_name',
-                'name': 'Ruleset Name'
+                'key': 'data.code',
+                'name': 'Code'
+            },
+            {
+                'key': 'data.name',
+                'name': 'Name'
+            },
+            {
+                'key': 'data.category',
+                'name': 'Category',
+            },
+            {
+                'key': 'data.report_lv',
+                'name': 'Severity',
+                'enums': [
+                    'High',
+                    'Medium',
+                    'Low',
+                ]
+            },
+            {
+                'key': 'data.flag',
+                'name': 'Result',
+                'enums': [
+                    'Secure',
+                    'Exposed',
+                    'N/A',
+                ]
             },
         ],
         'table': {
@@ -15,49 +41,74 @@ _METADATA = {
                 'type': 'query-search-table',
                 'options': {
                     'default_sort': {
-                        'key': 'data.ruleset_name',
+                        'key': 'data.code',
                         'desc': False
                     },
                     'fields': [
                         {
                             'type': 'text',
-                            'key': 'data.ruleset_name',
-                            'name': 'Ruleset Name',
+                            'key': 'data.code',
+                            'name': 'Code',
+                        },
+                        {
+                            'type': 'enum',
+                            'key': 'data.category',
+                            'name': 'Category',
                         },
                         {
                             'type': 'text',
-                            'key': 'data.ruleset_desc',
-                            'name': 'Description',
+                            'key': 'data.name',
+                            'name': 'Name',
                         },
                         {
-                            'type': 'text',
-                            'key': 'data.total_count.H',
-                            'name': 'High',
+                            'type': 'enum',
+                            'key': 'data.report_lv',
+                            'name': 'Severity',
+                            'options': {
+                                'High': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'coral.500'
+                                    }
+                                },
+                                'Medium': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'peacock.500'
+                                    }
+                                },
+                                'Low': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'indigo.500'
+                                    }
+                                }
+                            }
                         },
                         {
-                            'type': 'text',
-                            'key': 'data.total_count.M',
-                            'name': 'Medium',
-                        },
-                        {
-                            'type': 'text',
-                            'key': 'data.total_count.L',
-                            'name': 'Low',
-                        },
-                        {
-                            'type': 'text',
-                            'key': 'data.total_count.Secure',
-                            'name': 'Secure',
-                        },
-                        {
-                            'type': 'text',
-                            'key': 'data.total_count.N/A',
-                            'name': 'N/A',
-                        },
-                         {
-                            'type': 'text',
-                            'key': 'data.total_count.Score',
-                            'name': 'Score',
+                            'type': 'enum',
+                            'key': 'data.flag',
+                            'name': 'Result',
+                            'options': {
+                                'Exposed': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'crimson.500'
+                                    }
+                                },
+                                'Secure': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'royalblue.500'
+                                    }
+                                },
+                                'N/A': {
+                                    'type': 'badge',
+                                    'options': {
+                                        'background_color': 'dimgray.500'
+                                    }
+                                }
+                            }
                         },
                     ]
                 }
@@ -84,7 +135,8 @@ _METADATA = {
                         }
                     ],
                     'filter': [
-                        {'key': 'data.total_count.H', 'value': 'High', 'operator': 'eq'},
+                        {'key': 'data.report_lv', 'value': 'High', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Exposed', 'operator': 'eq'},
                     ]
                 }
             },
@@ -108,7 +160,8 @@ _METADATA = {
                         }
                     ],
                     'filter': [
-                        {'key': 'data.total_count.M', 'value': 'Medium', 'operator': 'eq'},
+                        {'key': 'data.report_lv', 'value': 'Medium', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Exposed', 'operator': 'eq'},
                     ]
                 }
             },
@@ -132,7 +185,8 @@ _METADATA = {
                         }
                     ],
                     'filter': [
-                        {'key': 'data.total_count.L', 'value': 'Low', 'operator': 'eq'},
+                        {'key': 'data.report_lv', 'value': 'Low', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Exposed', 'operator': 'eq'},
                     ]
                 }
             },
@@ -156,7 +210,7 @@ _METADATA = {
                         }
                     ],
                     'filter': [
-                        {'key': 'data.total_count.Secure', 'value': 'Medium', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Secure', 'operator': 'eq'},
                     ]
                 }
             },
@@ -180,31 +234,7 @@ _METADATA = {
                         }
                     ],
                     'filter': [
-                        {'key': 'data.total_count.N/A', 'value': 'N/A', 'operator': 'eq'},
-                    ]
-                }
-            },
-            {
-                'name': 'Total Score',
-                'type': 'summary',
-                'options': {
-                    'value_options': {
-                        'key': 'value',
-                        'options': {
-                            'default': 0
-                        }
-                    }
-                },
-                'query': {
-                    'aggregate': [
-                        {
-                            'count': {
-                                'name': 'value'
-                            }
-                        }
-                    ],
-                    'filter': [
-                        {'key': 'data.total_count.N/A', 'value': 'N/A', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'N/A', 'operator': 'eq'},
                     ]
                 }
             },
@@ -212,8 +242,8 @@ _METADATA = {
         'sub_data': {
             'layouts': [
                 {
-                    'type': 'table',
-                    'name': 'Detail',
+                    'type': 'item',
+                    'name': '교정 세부정보',
                     'options': {
                         'fields': [
                             {
@@ -223,60 +253,176 @@ _METADATA = {
                             },
                             {
                                 'type': 'text',
-                                'key': 'category',
-                                'name': 'Category',
-                            },
-                            {
-                                'type': 'text',
                                 'key': 'name',
                                 'name': 'Name',
                             },
                             {
                                 'type': 'text',
-                                'key': 'report_lv',
-                                'name': 'Severity',
+                                'key': 'category',
+                                'name': 'Category',
                             },
                             {
                                 'type': 'text',
-                                'key': 'flag',
-                                'name': 'Status',
-                            },
-                            {
-                                'name': 'Secure Details',
-                                'type': 'more',
-                                'key': 'id',
-                                "options": {
-                                    "sub_key": "good_key", 
-                                    "layout": {
-                                        "name": "Secure meta",
-                                        "type": "popup",
-                                        "options": {
-                                            "layout": { 
-                                                "type": "raw",
-                                            }
+                                'key': 'report_lv',
+                                'name': 'Severity',
+                                'options': {
+                                    'High': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': 'coral.500'
+                                        }
+                                    },
+                                    'Medium': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': 'peacock.500'
+                                        }
+                                    },
+                                    'Low': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': 'indigo.500'
                                         }
                                     }
                                 }
                             },
                             {
-                                'name': 'Flag Details',
-                                'type': 'more',
-                                'key': 'id',
-                                "options": {
-                                    "sub_key": "flag_key", 
-                                    "layout": {
-                                        "name": "Flag meta",
-                                        "type": "popup",
-                                        "options": {
-                                            "layout": { 
-                                                "type": "raw",
-                                            }
-                                        }
-                                    }
-                                }
+                                'type': 'text',
+                                'key': 'compliace_decs',
+                                'name': 'Description',
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'rule_standard',
+                                'name': 'Standard',
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'action_plan',
+                                'name': 'How to Act',
                             },
                         ],
-                        'root_path': 'data.findings'
+                        'root_path': 'data'
+                    }
+                },
+                {
+                    'type': 'table',
+                    'name': 'Compliance',
+                    'options': {
+                        'fields': [
+                            {
+                                'type': 'text',
+                                'key': 'ruleset_name',
+                                'name': 'Compliance Name'
+                            },
+                            {
+                                'type': 'list',
+                                'key': 'compliace_dtl',
+                                'name': 'Compliance Number',
+                                "options": {
+                                            # "delimiter": " ",
+                                            "item": {
+                                                "options": {
+                                                    "outline_color": "violet.500"
+                                                },
+                                                "type": "badge"
+                                            }
+                                },
+                            },
+                        ],
+                        'root_path': 'data'
+                    }
+                },
+                {
+                    'type': 'table',
+                    'name': 'Flag Details',
+                    'options': {
+                        'fields': [
+                            {
+                                'type': 'text',
+                                'key': 'id',
+                                'name': 'Resource ID'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'name',
+                                'name': 'Resource Name'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'resource_type',
+                                'name': 'Resource Type'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'region',
+                                'name': 'Region'
+                            },
+                            {
+                                'type': 'more',
+                                'key': 'id',
+                                'name': 'Flag findings',
+                                "options": {
+                                    "sub_key": "findings", 
+                                    "layout": {
+                                        "name": "Flag meta",
+                                        "type": "popup", 
+                                        "options": { 
+                                            "layout": { 
+                                                "type": "raw", 
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        'root_path': 'data.flag_key'
+                    }
+                },
+                {
+                    'type': 'table',
+                    'name': 'Secure Details',
+                    'options': {
+                        'fields': [
+                            {
+                                'type': 'text',
+                                'key': 'id',
+                                'name': 'Resource ID'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'name',
+                                'name': 'Resource Name'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'resource_type',
+                                'name': 'Resource Type'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'region',
+                                'name': 'Region'
+                            },
+                            {
+                                'type': 'more',
+                                'key': 'id',
+                                'name': 'Secure findings',
+                                "options": {
+                                    "sub_key": "findings", 
+                                    "layout": {
+                                        "name": "Secure meta",
+                                        "type": "popup", 
+                                        "options": { 
+                                            "layout": { 
+                                                "type": "raw", 
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        'root_path': 'data.good_key'
                     }
                 },
             ]

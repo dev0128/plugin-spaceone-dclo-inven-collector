@@ -1,4 +1,6 @@
 import logging
+import hashlib
+
 from spaceone.core.error import ERROR_INVALID_PARAMETER
 
 from cloudforet.plugin.lib.manager.collector_manager import CollectorManager
@@ -59,15 +61,16 @@ class DcloManager(CollectorManager):
 
 
     def _covert_options(self, options, secret_data):
-        # type 설정 secret 인지, role 인지
         selected_provider = options['provider']
-        
+
         if "role_arn" in secret_data:
             key_type = f'{selected_provider.upper()}-002'
             diag_data = {"arg_1": secret_data['role_arn'], "arg_2": secret_data['external_id']}
+            diag_data['id'] = hashlib.md5(secret_data['role_arn'].encode()).hexdigest()
         else:
             key_type = f'{selected_provider.upper()}-001'
             diag_data = {"arg_1": secret_data['aws_access_key_id'], "arg_2": secret_data['aws_secret_access_key']}
+            diag_data['id'] = hashlib.md5(secret_data['aws_access_key_id'].encode()).hexdigest()
 
         selected_compliance = options['compliance_framework']
         compliance = COMPLIANCE_FRAMEWORKS[selected_provider][selected_compliance]
@@ -75,37 +78,41 @@ class DcloManager(CollectorManager):
         return key_type, compliance, diag_data 
 
     def _make_compliance_results(self, check_result):
-        diag_id = check_result.get('diag_id')
-        result = check_result.get('payload', {})
+        results = []
 
-        compliance_result = {
-            'name': diag_id,
-            'test': "",
-            'reference': {
-                'resource_id': self.cloud_service_type,
-            },
-            'data': result,
-            'metadata': {
-                'view': {
-                    'sub_data': {
-                        'reference': {
-                            'resource_type': 'inventory.CloudServiceType',
-                            'options': {
-                                'provider': self.provider,
-                                'cloud_service_group': self.cloud_service_group,
-                                'cloud_service_type': self.cloud_service_type,
+        account_id = check_result.get('diag_id')
+        payload = check_result.get('payload', {})
+        
+        findings = payload.get('findings')
+        for finding in findings:
+            code = {
+                'account': account_id,
+                'reference': {
+                    'resource_id': self.cloud_service_type,
+                },
+                'data': finding,
+                'metadata': {
+                    'view': {
+                        'sub_data': {
+                            'reference': {
+                                'resource_type': 'inventory.CloudServiceType',
+                                'options': {
+                                    'provider': self.provider,
+                                    'cloud_service_group': self.cloud_service_group,
+                                    'cloud_service_type': self.cloud_service_type,
+                                }
                             }
                         }
                     }
-                }
-            },
-            'account': diag_id,
-            'provider': self.provider,
-            'cloud_service_group': self.cloud_service_group,
-            'cloud_service_type': self.cloud_service_type,
-            'region_code': 'global'
-        }
+                },
+                'provider': self.provider,
+                'cloud_service_group': self.cloud_service_group,
+                'cloud_service_type': self.cloud_service_type,
+                'region_code': 'global'
+            }
 
-        return [compliance_result]
+            results.append(code)
+
+        return results
 
 

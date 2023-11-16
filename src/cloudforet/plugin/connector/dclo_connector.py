@@ -24,10 +24,8 @@ class DcloConnector(BaseConnector):
 
 
     def fetch_compliance_results(self, key_type, compliance, diag_data) -> dict:
-        diag_id = uuid4().hex
-
         param = {
-            "diag_id": diag_id,
+            "diag_id": diag_data['id'],
             "type": key_type,
             "arg_1": diag_data['arg_1'],
             "arg_2": diag_data['arg_2'],
@@ -43,7 +41,7 @@ class DcloConnector(BaseConnector):
             sleep(PENDING_SECOND)
             waiting_timer += PENDING_SECOND
 
-            res = requests.get(f"{DCLO_PLUGIN_URL}/result/{diag_id}")
+            res = requests.get(f"{DCLO_PLUGIN_URL}/result/{diag_data['id']}")
             content = json.loads(res.content)
             status = content.get('status')
 
@@ -55,7 +53,7 @@ class DcloConnector(BaseConnector):
                 raise ERROR_REQUEST_TIMEOUT(key='options.provider') 
 
         response = {
-            'diag_id': diag_id,
+            'diag_id': diag_data['id'],
             'payload': result
         }
         
