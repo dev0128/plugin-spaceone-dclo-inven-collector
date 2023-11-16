@@ -93,13 +93,13 @@ _METADATA = {
                                 'Exposed': {
                                     'type': 'badge',
                                     'options': {
-                                        'background_color': 'crimson.500'
+                                        'background_color': 'coral.500'
                                     }
                                 },
                                 'Secure': {
                                     'type': 'badge',
                                     'options': {
-                                        'background_color': 'royalblue.500'
+                                        'background_color': 'indigo.500'
                                     }
                                 },
                                 'N/A': {
@@ -311,28 +311,28 @@ _METADATA = {
                     'options': {
                         'fields': [
                             {
-                                'type': 'badge',
+                                'type': 'text',
                                 'key': 'com_1',
                                 'name': 'Major',
-                                "options": {
-                                    "outline_color": "violet.500"
-                                },
+                                # "options": {
+                                #     "outline_color": "violet.500"
+                                # },
                             },
                             {
-                                'type': 'badge',
+                                'type': 'text',
                                 'key': 'com_2',
                                 'name': 'Sub',
-                                "options": {
-                                    "outline_color": "violet.500"
-                                },
+                                # "options": {
+                                #     "outline_color": "violet.500"
+                                # },
                             },
                             {
-                                'type': 'badge',
+                                'type': 'text',
                                 'key': 'com_3',
                                 'name': 'Subclass',
-                                "options": {
-                                    "outline_color": "violet.500"
-                                },
+                                # "options": {
+                                #     "outline_color": "violet.500"
+                                # },
                             },
                         ],
                         'root_path': 'data.compliace_dtl'

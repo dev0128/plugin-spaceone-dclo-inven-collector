@@ -1,5 +1,6 @@
 import logging
 import hashlib
+import re
 
 from spaceone.core.error import ERROR_INVALID_PARAMETER
 
@@ -116,4 +117,30 @@ class DcloManager(CollectorManager):
 
         return results
 
+    def _covert_description_to_markdown(self, finding):
+        for key in finding:
+            if key in ['compliace_decs','rule_standard','action_plan',]:
+                finding[key] = self._format_text_and_json(finding[key])
 
+        return finding
+
+    
+
+    def _format_text_and_json(self, text):
+        # Replace 'h1:' with '#'
+        text = text.replace("h1:", "#")
+
+        # Replace 'h2:' and 'b-h2:' with '##'
+        text = re.sub(r"\bh2:|\bb-h2:", "##", text)
+
+        # Remove 'b:'
+        text = text.replace("b:", "")
+
+        # Regular expression to find a JSON object and ensure it is not part of another word
+        json_pattern = r"(?<!\w)({.*?})(?=\Z|: [^:])"
+        
+        # Replace function to add '```' around the JSON content
+        def replace_func(match):
+            return "```\n" + match.group(1).strip() + "\n```"
+
+        return re.sub(json_pattern, replace_func, text, flags=re.DOTALL)
