@@ -45,11 +45,11 @@ _METADATA = {
                         'desc': False
                     },
                     'fields': [
-                        {
-                            'type': 'text',
-                            'key': 'data.code',
-                            'name': 'Code',
-                        },
+                        # {
+                        #     'type': 'text',
+                        #     'key': 'data.code',
+                        #     'name': 'Code',
+                        # },
                         {
                             'type': 'enum',
                             'key': 'data.category',
@@ -58,7 +58,7 @@ _METADATA = {
                         {
                             'type': 'text',
                             'key': 'data.name',
-                            'name': 'Name',
+                            'name': 'Rule Name',
                         },
                         {
                             'type': 'enum',
@@ -262,7 +262,7 @@ _METADATA = {
                                 'name': 'Category',
                             },
                             {
-                                'type': 'text',
+                                'type': 'enum',
                                 'key': 'report_lv',
                                 'name': 'Severity',
                                 'options': {
@@ -311,26 +311,31 @@ _METADATA = {
                     'options': {
                         'fields': [
                             {
-                                'type': 'text',
-                                'key': 'ruleset_name',
-                                'name': 'Compliance Name'
+                                'type': 'badge',
+                                'key': 'com_1',
+                                'name': 'Major',
+                                "options": {
+                                    "outline_color": "violet.500"
+                                },
                             },
                             {
-                                'type': 'list',
-                                'key': 'compliace_dtl',
-                                'name': 'Compliance Number',
+                                'type': 'badge',
+                                'key': 'com_2',
+                                'name': 'Sub',
                                 "options": {
-                                            # "delimiter": " ",
-                                            "item": {
-                                                "options": {
-                                                    "outline_color": "violet.500"
-                                                },
-                                                "type": "badge"
-                                            }
+                                    "outline_color": "violet.500"
+                                },
+                            },
+                            {
+                                'type': 'badge',
+                                'key': 'com_3',
+                                'name': 'Subclass',
+                                "options": {
+                                    "outline_color": "violet.500"
                                 },
                             },
                         ],
-                        'root_path': 'data'
+                        'root_path': 'data.compliace_dtl'
                     }
                 },
                 {
@@ -338,6 +343,11 @@ _METADATA = {
                     'name': 'Flag Details',
                     'options': {
                         'fields': [
+                            {
+                                'type': 'text',
+                                'key': 'region',
+                                'name': 'Region'
+                            },
                             {
                                 'type': 'text',
                                 'key': 'id',
@@ -352,11 +362,6 @@ _METADATA = {
                                 'type': 'text',
                                 'key': 'resource_type',
                                 'name': 'Resource Type'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'region',
-                                'name': 'Region'
                             },
                             {
                                 'type': 'more',
@@ -386,6 +391,11 @@ _METADATA = {
                         'fields': [
                             {
                                 'type': 'text',
+                                'key': 'region',
+                                'name': 'Region'
+                            },
+                            {
+                                'type': 'text',
                                 'key': 'id',
                                 'name': 'Resource ID'
                             },
@@ -398,11 +408,6 @@ _METADATA = {
                                 'type': 'text',
                                 'key': 'resource_type',
                                 'name': 'Resource Type'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'region',
-                                'name': 'Region'
                             },
                             {
                                 'type': 'more',

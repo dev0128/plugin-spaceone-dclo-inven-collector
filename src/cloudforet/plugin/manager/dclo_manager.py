@@ -45,7 +45,7 @@ class DcloManager(CollectorManager):
 
             for compliance_result in self._make_compliance_results(compliance_results):
                 yield self.make_response( compliance_result,
-                    {'1': ['reference.resource_id', 'provider', 'cloud_service_type', 'cloud_service_group', 'account']}
+                    {'1': ['reference.resource_id', 'provider', 'cloud_service_type', 'cloud_service_group', 'account', 'name']}
                 )
 
         except Exception as e:
@@ -87,6 +87,7 @@ class DcloManager(CollectorManager):
         for finding in findings:
             code = {
                 'account': account_id,
+                'name': finding['code'],
                 'reference': {
                     'resource_id': self.cloud_service_type,
                 },
