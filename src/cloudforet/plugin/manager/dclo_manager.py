@@ -92,7 +92,7 @@ class DcloManager(CollectorManager):
                 'reference': {
                     'resource_id': self.cloud_service_type,
                 },
-                'data': finding,
+                'data': self._covert_description_to_markdown(finding),
                 'metadata': {
                     'view': {
                         'sub_data': {
