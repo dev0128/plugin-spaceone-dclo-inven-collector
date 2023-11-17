@@ -252,8 +252,8 @@ _METADATA = {
                     'options': {
                         'layouts': [
                             {
-                                'type': 'item',
                                 'name': '교정 세부정보',
+                                'type': 'item',
                                 'fields': [
                                     {
                                         'type': 'text',
@@ -297,10 +297,10 @@ _METADATA = {
                                     },
                                 ],
                             },
-                            {
-                                'type': 'markdown',
-                                'markdown': """# Description """,
-                            },
+                            # {
+                            #     'type': 'markdown',
+                            #     'markdown': """# Description """,
+                            # },
                             # {
                             #     'type': 'markdown',
                             #     'markdown': """# Description <br/>{{data.compliance_decs}}""",
