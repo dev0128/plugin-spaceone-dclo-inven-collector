@@ -248,7 +248,9 @@ _METADATA = {
             'layouts': [
                 {
                     'options': {
-                        "layouts": [
+                        "type": "list",
+                        "name": "교정 세부정보",
+                        'layouts': [
                             {
                                 'type': 'item',
                                 'name': '교정 세부정보',
@@ -297,16 +299,16 @@ _METADATA = {
                             },
                             {
                                 'type': 'markdown',
-                                'markdown': """# Description <br/>""",
+                                'markdown': """# Description <br/>{{data.compliance_decs}}""",
                             },
-                            # {
-                            #     'type': 'markdown',
-                            #     'markdown': """# Standard <br/>{{data.rule_standard}}""",
-                            # },
-                            # {
-                            #     'type': 'markdown',
-                            #     'markdown': """# How to Act <br/>{{data.action_plan}}""",
-                            # },
+                            {
+                                'type': 'markdown',
+                                'markdown': """# Standard <br/>{{data.rule_standard}}""",
+                            },
+                            {
+                                'type': 'markdown',
+                                'markdown': """# How to Act <br/>{{data.action_plan}}""",
+                            },
                         ]
                     }
                 },
