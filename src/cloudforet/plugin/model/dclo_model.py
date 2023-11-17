@@ -302,17 +302,17 @@ _METADATA = {
                             {
                                 'type': 'markdown',
                                 "name": "Description",
-                                'options': {'markdown': "# Description <br/>{{data.compliance_decs}}",}
+                                'options': {'markdown': r"{{data.compliance_decs}}",}
                             },
                             {
                                 'type': 'markdown',
                                 "name": "Rule Standard",
-                                'options': {'markdown': "{{data.rule_standard}}",}
+                                'options': {'markdown': r"{{data.rule_standard}}",}
                             },
                             {
                                 'type': 'markdown',
                                 "name": "How to act",
-                                'options': {'markdown': "{{data.action_plan}}",}
+                                'options': {'markdown': r"{{data.action_plan}}",}
                             },
                         ]
                     }
