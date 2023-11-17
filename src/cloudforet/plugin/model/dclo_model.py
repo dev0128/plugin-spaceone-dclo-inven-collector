@@ -86,6 +86,11 @@ _METADATA = {
                             }
                         },
                         {
+                            'type': 'text',
+                            'key': 'data.findings',
+                            'name': 'Findings',
+                        },
+                        {
                             'type': 'enum',
                             'key': 'data.flag',
                             'name': 'Result',

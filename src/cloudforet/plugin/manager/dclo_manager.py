@@ -118,6 +118,8 @@ class DcloManager(CollectorManager):
         return results
 
     def _covert_description_to_markdown(self, finding):
+        finding['findings'] = f"{finding['flag_items']}/{finding['checked_items']}" if finding['checked_items'] else '-'
+        
         for key in finding:
             if key in ['compliance_decs','rule_standard','action_plan',]:
                 finding[key] = self._format_text_and_json(finding[key])
