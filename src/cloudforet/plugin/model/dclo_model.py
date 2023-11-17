@@ -340,7 +340,7 @@ _METADATA = {
                 },
                 {
                     'type': 'table',
-                    'name': 'Flag Details',
+                    'name': 'Vulnerability List',
                     'options': {
                         'fields': [
                             {
@@ -386,7 +386,7 @@ _METADATA = {
                 },
                 {
                     'type': 'table',
-                    'name': 'Secure Details',
+                    'name': 'Secure List',
                     'options': {
                         'fields': [
                             {
