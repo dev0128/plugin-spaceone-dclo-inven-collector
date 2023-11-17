@@ -299,16 +299,20 @@ _METADATA = {
                             },
                             {
                                 'type': 'markdown',
-                                'markdown': """# Description <br/>{{data.compliance_decs}}""",
+                                'markdown': """# Description """,
                             },
-                            {
-                                'type': 'markdown',
-                                'markdown': """# Standard <br/>{{data.rule_standard}}""",
-                            },
-                            {
-                                'type': 'markdown',
-                                'markdown': """# How to Act <br/>{{data.action_plan}}""",
-                            },
+                            # {
+                            #     'type': 'markdown',
+                            #     'markdown': """# Description <br/>{{data.compliance_decs}}""",
+                            # },
+                            # {
+                            #     'type': 'markdown',
+                            #     'markdown': """# Standard <br/>{{data.rule_standard}}""",
+                            # },
+                            # {
+                            #     'type': 'markdown',
+                            #     'markdown': """# How to Act <br/>{{data.action_plan}}""",
+                            # },
                         ]
                     }
                 },
