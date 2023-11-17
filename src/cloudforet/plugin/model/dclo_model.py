@@ -247,9 +247,9 @@ _METADATA = {
         'sub_data': {
             'layouts': [
                 {
+                    "type": "list",
+                    "name": "교정 세부정보",
                     'options': {
-                        "type": "list",
-                        "name": "교정 세부정보",
                         'layouts': [
                             {
                                 'type': 'item',
