@@ -247,67 +247,85 @@ _METADATA = {
         'sub_data': {
             'layouts': [
                 {
-                    'type': 'item',
-                    'name': '교정 세부정보',
                     'options': {
-                        'fields': [
+                        "layouts": [
                             {
-                                'type': 'text',
-                                'key': 'code',
-                                'name': 'Code'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'name',
-                                'name': 'Name',
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'category',
-                                'name': 'Category',
-                            },
-                            {
-                                'type': 'enum',
-                                'key': 'report_lv',
-                                'name': 'Severity',
-                                'options': {
-                                    'High': {
-                                        'type': 'badge',
+                                'type': 'item',
+                                'name': '교정 세부정보',
+                                'fields': [
+                                    {
+                                        'type': 'text',
+                                        'key': 'data.code',
+                                        'name': 'Code'
+                                    },
+                                    {
+                                        'type': 'text',
+                                        'key': 'data.name',
+                                        'name': 'Name',
+                                    },
+                                    {
+                                        'type': 'text',
+                                        'key': 'data.category',
+                                        'name': 'Category',
+                                    },
+                                    {
+                                        'type': 'enum',
+                                        'key': 'data.report_lv',
+                                        'name': 'Severity',
                                         'options': {
-                                            'background_color': 'coral.500'
+                                            'High': {
+                                                'type': 'badge',
+                                                'options': {
+                                                    'background_color': 'coral.500'
+                                                }
+                                            },
+                                            'Medium': {
+                                                'type': 'badge',
+                                                'options': {
+                                                    'background_color': 'peacock.500'
+                                                }
+                                            },
+                                            'Low': {
+                                                'type': 'badge',
+                                                'options': {
+                                                    'background_color': 'indigo.500'
+                                                }
+                                            }
                                         }
                                     },
-                                    'Medium': {
-                                        'type': 'badge',
-                                        'options': {
-                                            'background_color': 'peacock.500'
-                                        }
-                                    },
-                                    'Low': {
-                                        'type': 'badge',
-                                        'options': {
-                                            'background_color': 'indigo.500'
-                                        }
-                                    }
-                                }
+                                ],
                             },
                             {
-                                'type': 'text',
-                                'key': 'compliance_decs',
-                                'name': 'Description',
+                                'type': 'markdown',
+                                'markdown': """#Description<br/>{{data.compliance_decs}}""",
                             },
                             {
-                                'type': 'text',
-                                'key': 'rule_standard',
-                                'name': 'Standard',
+                                'type': 'markdown',
+                                'markdown': """#Standard<br/>{{data.rule_standard}}""",
                             },
                             {
-                                'type': 'text',
-                                'key': 'action_plan',
-                                'name': 'How to Act',
+                                'type': 'markdown',
+                                'markdown': """#How to Act<br/>{{data.action_plan}}""",
                             },
-                        ],
-                        'root_path': 'data'
+
+                            # 'fields': [
+                            #         {
+                            #             'type': 'text',
+                            #             'key': 'compliance_decs',
+                            #             'name': 'Description',
+                            #         },
+                            #         {
+                            #             'type': 'text',
+                            #             'key': 'rule_standard',
+                            #             'name': 'Standard',
+                            #         },
+                            #         {
+                            #             'type': 'text',
+                            #             'key': 'action_plan',
+                            #             'name': 'How to Act',
+                            #         },
+                            #     ],
+                        ]
                     }
                 },
                 {
