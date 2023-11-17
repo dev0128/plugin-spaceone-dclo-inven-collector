@@ -301,16 +301,17 @@ _METADATA = {
                             },
                             {
                                 'type': 'markdown',
-                                'key': 'data.compliance_decs',
+                                "name": "Description",
                                 'options': {'markdown': "# Description <br/>{{data.compliance_decs}}",}
                             },
                             {
                                 'type': 'markdown',
+                                "name": "Rule Standard",
                                 'options': {'markdown': "{{data.rule_standard}}",}
                             },
                             {
                                 'type': 'markdown',
-                                'key': 'data.action_plan',
+                                "name": "How to act",
                                 'options': {'markdown': "{{data.action_plan}}",}
                             },
                         ]
