@@ -30,7 +30,7 @@ _METADATA = {
                 'name': 'Result',
                 'enums': [
                     'Secure',
-                    'Exposed',
+                    'Vuln',
                     'N/A',
                 ]
             },
@@ -90,7 +90,7 @@ _METADATA = {
                             'key': 'data.flag',
                             'name': 'Result',
                             'options': {
-                                'Exposed': {
+                                'Vuln': {
                                     'type': 'badge',
                                     'options': {
                                         'background_color': 'coral.500'
@@ -136,7 +136,7 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'High', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Exposed', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
                     ]
                 }
             },
@@ -161,7 +161,7 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'Medium', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Exposed', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
                     ]
                 }
             },
@@ -186,7 +186,7 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'Low', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Exposed', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
                     ]
                 }
             },
@@ -288,7 +288,7 @@ _METADATA = {
                             },
                             {
                                 'type': 'text',
-                                'key': 'compliace_decs',
+                                'key': 'compliance_decs',
                                 'name': 'Description',
                             },
                             {
@@ -335,7 +335,7 @@ _METADATA = {
                                 # },
                             },
                         ],
-                        'root_path': 'data.compliace_dtl'
+                        'root_path': 'data.compliance_dtl'
                     }
                 },
                 {
@@ -365,12 +365,12 @@ _METADATA = {
                             },
                             {
                                 'type': 'more',
-                                'key': 'id',
-                                'name': 'Flag findings',
+                                'key': 'show',
+                                'name': 'Vulnerability findings',
                                 "options": {
                                     "sub_key": "findings", 
                                     "layout": {
-                                        "name": "Flag meta",
+                                        "name": "Vulnerability meta",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
@@ -411,7 +411,7 @@ _METADATA = {
                             },
                             {
                                 'type': 'more',
-                                'key': 'id',
+                                'key': 'show',
                                 'name': 'Secure findings',
                                 "options": {
                                     "sub_key": "findings", 

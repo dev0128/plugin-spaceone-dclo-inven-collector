@@ -119,7 +119,7 @@ class DcloManager(CollectorManager):
 
     def _covert_description_to_markdown(self, finding):
         for key in finding:
-            if key in ['compliace_decs','rule_standard','action_plan',]:
+            if key in ['compliance_decs','rule_standard','action_plan',]:
                 finding[key] = self._format_text_and_json(finding[key])
 
         return finding
