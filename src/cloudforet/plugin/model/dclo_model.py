@@ -254,65 +254,67 @@ _METADATA = {
                             {
                                 'name': '교정 세부정보',
                                 'type': 'item',
-                                'fields': [
-                                    {
-                                        'type': 'text',
-                                        'key': 'data.code',
-                                        'name': 'Code'
-                                    },
-                                    {
-                                        'type': 'text',
-                                        'key': 'data.name',
-                                        'name': 'Name',
-                                    },
-                                    {
-                                        'type': 'text',
-                                        'key': 'data.category',
-                                        'name': 'Category',
-                                    },
-                                    {
-                                        'type': 'enum',
-                                        'key': 'data.report_lv',
-                                        'name': 'Severity',
-                                        'options': {
-                                            'High': {
-                                                'type': 'badge',
-                                                'options': {
-                                                    'background_color': 'coral.500'
-                                                }
-                                            },
-                                            'Medium': {
-                                                'type': 'badge',
-                                                'options': {
-                                                    'background_color': 'peacock.500'
-                                                }
-                                            },
-                                            'Low': {
-                                                'type': 'badge',
-                                                'options': {
-                                                    'background_color': 'indigo.500'
+                                'options':{
+                                    'fields': [
+                                        {
+                                            'type': 'text',
+                                            'key': 'data.code',
+                                            'name': 'Code'
+                                        },
+                                        {
+                                            'type': 'text',
+                                            'key': 'data.name',
+                                            'name': 'Name',
+                                        },
+                                        {
+                                            'type': 'text',
+                                            'key': 'data.category',
+                                            'name': 'Category',
+                                        },
+                                        {
+                                            'type': 'enum',
+                                            'key': 'data.report_lv',
+                                            'name': 'Severity',
+                                            'options': {
+                                                'High': {
+                                                    'type': 'badge',
+                                                    'options': {
+                                                        'background_color': 'coral.500'
+                                                    }
+                                                },
+                                                'Medium': {
+                                                    'type': 'badge',
+                                                    'options': {
+                                                        'background_color': 'peacock.500'
+                                                    }
+                                                },
+                                                'Low': {
+                                                    'type': 'badge',
+                                                    'options': {
+                                                        'background_color': 'indigo.500'
+                                                    }
                                                 }
                                             }
-                                        }
-                                    },
-                                ],
+                                        },
+                                    ],
+                                }
                             },
-                            # {
-                            #     'type': 'markdown',
-                            #     'markdown': """# Description """,
-                            # },
-                            # {
-                            #     'type': 'markdown',
-                            #     'markdown': """# Description <br/>{{data.compliance_decs}}""",
-                            # },
-                            # {
-                            #     'type': 'markdown',
-                            #     'markdown': """# Standard <br/>{{data.rule_standard}}""",
-                            # },
-                            # {
-                            #     'type': 'markdown',
-                            #     'markdown': """# How to Act <br/>{{data.action_plan}}""",
-                            # },
+                            {
+                                'type': 'markdown',
+                                'options': {'markdown': """# Description """,}
+                            },
+                            {
+                                'type': 'markdown',
+                                'options': {'markdown': """# Description <br/>{{data.compliance_decs}}""",}
+                            },
+                            {
+                                'type': 'markdown',
+                                'options': {'markdown': """# Standard <br/>{{data.rule_standard}}""",}
+                            },
+                            {
+                                'type': 'markdown',
+                                'options': {'markdown': """# How to Act <br/>{{data.action_plan}}""",}
+                            },
                         ]
                     }
                 },
