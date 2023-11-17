@@ -312,9 +312,7 @@ _METADATA = {
                             {
                                 'type': 'markdown',
                                 "name": "How to act",
-                                # 'options': {'markdown': r"{{data.action_plan}}",}
-                                'options': {'markdown': {"en": "# this is markdown",
-                                                         "ko": "# 이것은 마크다운입니다",}}
+                                'options': {'markdown': "{{data.action_plan}}",}
                             },
                         ]
                     }
