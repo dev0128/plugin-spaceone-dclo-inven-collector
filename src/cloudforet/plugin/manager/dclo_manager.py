@@ -130,10 +130,12 @@ class DcloManager(CollectorManager):
 
     def _format_text_and_json(self, text):
         # Replace 'h1:' with '#'
-        text = text.replace("h1:", "#")
+        text = text.replace("h1:", "# ")
+
+        text = text.replace(r"\r\n", "<br/> ")
 
         # Replace 'h2:' and 'b-h2:' with '##'
-        text = re.sub(r"\bh2:|\bb-h2:", "##", text)
+        text = re.sub(r"\bh2:|\bb-h2:", "## ", text)
 
         # Remove 'b:'
         text = text.replace("b:", "")
