@@ -297,34 +297,16 @@ _METADATA = {
                             },
                             {
                                 'type': 'markdown',
-                                'markdown': """#Description<br/>{{data.compliance_decs}}""",
+                                'markdown': """# Description <br/>""",
                             },
-                            {
-                                'type': 'markdown',
-                                'markdown': """#Standard<br/>{{data.rule_standard}}""",
-                            },
-                            {
-                                'type': 'markdown',
-                                'markdown': """#How to Act<br/>{{data.action_plan}}""",
-                            },
-
-                            # 'fields': [
-                            #         {
-                            #             'type': 'text',
-                            #             'key': 'compliance_decs',
-                            #             'name': 'Description',
-                            #         },
-                            #         {
-                            #             'type': 'text',
-                            #             'key': 'rule_standard',
-                            #             'name': 'Standard',
-                            #         },
-                            #         {
-                            #             'type': 'text',
-                            #             'key': 'action_plan',
-                            #             'name': 'How to Act',
-                            #         },
-                            #     ],
+                            # {
+                            #     'type': 'markdown',
+                            #     'markdown': """# Standard <br/>{{data.rule_standard}}""",
+                            # },
+                            # {
+                            #     'type': 'markdown',
+                            #     'markdown': """# How to Act <br/>{{data.action_plan}}""",
+                            # },
                         ]
                     }
                 },
