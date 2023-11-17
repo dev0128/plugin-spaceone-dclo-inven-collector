@@ -30,7 +30,7 @@ _METADATA = {
                 'name': 'Result',
                 'enums': [
                     'Secure',
-                    'Vuln',
+                    'Vulnerability',
                     'N/A',
                 ]
             },
@@ -90,7 +90,7 @@ _METADATA = {
                             'key': 'data.flag',
                             'name': 'Result',
                             'options': {
-                                'Vuln': {
+                                'Vulnerability': {
                                     'type': 'badge',
                                     'options': {
                                         'background_color': 'coral.500'
@@ -136,7 +136,7 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'High', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vulnerability', 'operator': 'eq'},
                     ]
                 }
             },
@@ -161,7 +161,7 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'Medium', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vulnerability', 'operator': 'eq'},
                     ]
                 }
             },
@@ -186,7 +186,7 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'Low', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vulnerability', 'operator': 'eq'},
                     ]
                 }
             },
