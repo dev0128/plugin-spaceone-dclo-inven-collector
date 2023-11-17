@@ -301,19 +301,17 @@ _METADATA = {
                             },
                             {
                                 'type': 'markdown',
-                                'options': {'markdown': """# Description """,}
+                                'key': 'data.compliance_decs',
+                                'options': {'markdown': "# Description <br/>{{data.compliance_decs}}",}
                             },
                             {
                                 'type': 'markdown',
-                                'options': {'markdown': """# Description <br/>{{data.compliance_decs}}""",}
+                                'options': {'markdown': "{{data.rule_standard}}",}
                             },
                             {
                                 'type': 'markdown',
-                                'options': {'markdown': """# Standard <br/>{{data.rule_standard}}""",}
-                            },
-                            {
-                                'type': 'markdown',
-                                'options': {'markdown': """# How to Act <br/>{{data.action_plan}}""",}
+                                'key': 'data.action_plan',
+                                'options': {'markdown': "{{data.action_plan}}",}
                             },
                         ]
                     }
