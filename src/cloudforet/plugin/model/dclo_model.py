@@ -373,7 +373,8 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Vulnerable findings',
                                 "options": {
-                                    "key": "findings", 
+                                    "key": "findings",
+                                    'root_path': 'data.flag_key',
                                     "layout": {
                                         "name": "Vulnerable Status",
                                         "type": "popup", 
@@ -423,6 +424,7 @@ _METADATA = {
                                     "layout": {
                                         "name": "Secure Status",
                                         "type": "popup", 
+                                        'root_path': 'data.good_key',
                                         "options": { 
                                             "layout": { 
                                                 "type": "raw", 
