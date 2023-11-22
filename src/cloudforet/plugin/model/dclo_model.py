@@ -373,13 +373,13 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Vulnerable findings',
                                 "options": {
-                                    "sub_key": "findings", 
+                                    "key": "findings", 
                                     "layout": {
                                         "name": "Vulnerable Status",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
-                                                "type": "dict", 
+                                                "type": "raw", 
                                             }
                                         }
                                     }
@@ -419,13 +419,13 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Secure findings',
                                 "options": {
-                                    "sub_key": "findings", 
+                                    "key": "findings", 
                                     "layout": {
                                         "name": "Secure Status",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
-                                                "type": "dict", 
+                                                "type": "raw", 
                                             }
                                         }
                                     }
