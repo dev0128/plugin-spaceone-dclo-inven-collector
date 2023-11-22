@@ -317,70 +317,70 @@ _METADATA = {
                         ]
                     }
                 },
-                {
-                    'type': 'item',
-                    'name': '교정 세부정보',
-                    'options': {
-                        'fields': [
-                            {
-                                'type': 'text',
-                                'key': 'code',
-                                'name': 'Code'
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'name',
-                                'name': 'Name',
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'category',
-                                'name': 'Category',
-                            },
-                            {
-                                'type': 'enum',
-                                'key': 'report_lv',
-                                'name': 'Severity',
-                                'options': {
-                                    'High': {
-                                        'type': 'badge',
-                                        'options': {
-                                            'background_color': '#ff5344'
-                                        }
-                                    },
-                                    'Medium': {
-                                        'type': 'badge',
-                                        'options': {
-                                            'background_color': '#ffa726'
-                                        }
-                                    },
-                                    'Low': {
-                                        'type': 'badge',
-                                        'options': {
-                                            'background_color': '#f7d959'
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'compliance_decs',
-                                'name': 'Description',
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'rule_standard',
-                                'name': 'Standard',
-                            },
-                            {
-                                'type': 'text',
-                                'key': 'action_plan',
-                                'name': 'How to Act',
-                            },
-                        ],
-                        'root_path': 'data'
-                    }
-                },
+                # {
+                #     'type': 'item',
+                #     'name': '교정 세부정보',
+                #     'options': {
+                #         'fields': [
+                #             {
+                #                 'type': 'text',
+                #                 'key': 'code',
+                #                 'name': 'Code'
+                #             },
+                #             {
+                #                 'type': 'text',
+                #                 'key': 'name',
+                #                 'name': 'Name',
+                #             },
+                #             {
+                #                 'type': 'text',
+                #                 'key': 'category',
+                #                 'name': 'Category',
+                #             },
+                #             {
+                #                 'type': 'enum',
+                #                 'key': 'report_lv',
+                #                 'name': 'Severity',
+                #                 'options': {
+                #                     'High': {
+                #                         'type': 'badge',
+                #                         'options': {
+                #                             'background_color': '#ff5344'
+                #                         }
+                #                     },
+                #                     'Medium': {
+                #                         'type': 'badge',
+                #                         'options': {
+                #                             'background_color': '#ffa726'
+                #                         }
+                #                     },
+                #                     'Low': {
+                #                         'type': 'badge',
+                #                         'options': {
+                #                             'background_color': '#f7d959'
+                #                         }
+                #                     }
+                #                 }
+                #             },
+                #             {
+                #                 'type': 'text',
+                #                 'key': 'compliance_decs',
+                #                 'name': 'Description',
+                #             },
+                #             {
+                #                 'type': 'text',
+                #                 'key': 'rule_standard',
+                #                 'name': 'Standard',
+                #             },
+                #             {
+                #                 'type': 'text',
+                #                 'key': 'action_plan',
+                #                 'name': 'How to Act',
+                #             },
+                #         ],
+                #         'root_path': 'data'
+                #     }
+                # },
                 {
                     'type': 'table',
                     'name': 'Compliance',
@@ -444,7 +444,7 @@ _METADATA = {
                                 'key': 'show',
                                 'name': 'Vulnerability findings',
                                 "options": {
-                                    "key": "findings", 
+                                    "sub_key": "findings", 
                                     "layout": {
                                         "name": "Vulnerability meta",
                                         "type": "popup", 
@@ -490,7 +490,7 @@ _METADATA = {
                                 'key': 'show',
                                 'name': 'Secure findings',
                                 "options": {
-                                    "key": "findings", 
+                                    "sub_key": "findings", 
                                     "layout": {
                                         "name": "Secure meta",
                                         "type": "popup", 
