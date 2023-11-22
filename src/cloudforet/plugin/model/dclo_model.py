@@ -30,7 +30,7 @@ _METADATA = {
                 'name': 'Result',
                 'enums': [
                     'Secure',
-                    'Vulnerability',
+                    'Vuln',
                     'N/A',
                 ]
             },
@@ -45,11 +45,11 @@ _METADATA = {
                         'desc': False
                     },
                     'fields': [
-                        # {
-                        #     'type': 'text',
-                        #     'key': 'data.code',
-                        #     'name': 'Code',
-                        # },
+                        {
+                            'type': 'text',
+                            'key': 'data.code',
+                            'name': 'Rule ID',
+                        },
                         {
                             'type': 'enum',
                             'key': 'data.category',
@@ -95,7 +95,7 @@ _METADATA = {
                             'key': 'data.flag',
                             'name': 'Result',
                             'options': {
-                                'Vulnerability': {
+                                'Vuln': {
                                     'type': 'badge',
                                     'options': {
                                         'background_color': 'coral.500'
@@ -121,7 +121,7 @@ _METADATA = {
         },
         'widget': [
             {
-                'name': 'High Count',
+                'name': 'High',
                 'type': 'summary',
                 'options': {
                     'value_options': {
@@ -141,12 +141,12 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'High', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Vulnerability', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
                     ]
                 }
             },
             {
-                'name': 'Medium Count',
+                'name': 'Medium',
                 'type': 'summary',
                 'options': {
                     'value_options': {
@@ -166,12 +166,12 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'Medium', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Vulnerability', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
                     ]
                 }
             },
             {
-                'name': 'Low Count',
+                'name': 'Low',
                 'type': 'summary',
                 'options': {
                     'value_options': {
@@ -191,12 +191,12 @@ _METADATA = {
                     ],
                     'filter': [
                         {'key': 'data.report_lv', 'value': 'Low', 'operator': 'eq'},
-                        {'key': 'data.flag', 'value': 'Vulnerability', 'operator': 'eq'},
+                        {'key': 'data.flag', 'value': 'Vuln', 'operator': 'eq'},
                     ]
                 }
             },
             {
-                'name': 'Secure Count',
+                'name': 'Secure',
                 'type': 'summary',
                 'options': {
                     'value_options': {
@@ -220,7 +220,7 @@ _METADATA = {
                 }
             },
             {
-                'name': 'N/A Count',
+                'name': 'N/A',
                 'type': 'summary',
                 'options': {
                     'value_options': {
@@ -254,12 +254,12 @@ _METADATA = {
                             {
                                 'type': 'text',
                                 'key': 'code',
-                                'name': 'Code'
+                                'name': 'Rule ID'
                             },
                             {
                                 'type': 'text',
                                 'key': 'name',
-                                'name': 'Name',
+                                'name': 'Rule Name',
                             },
                             {
                                 'type': 'text',
@@ -299,12 +299,12 @@ _METADATA = {
                             {
                                 'type': 'text',
                                 'key': 'rule_standard',
-                                'name': 'Standard',
+                                'name': 'Assessment Criteria',
                             },
                             {
                                 'type': 'text',
                                 'key': 'action_plan',
-                                'name': 'How to Act',
+                                'name': 'Mitigation Plan',
                             },
                         ],
                         'root_path': 'data'
@@ -345,7 +345,7 @@ _METADATA = {
                 },
                 {
                     'type': 'table',
-                    'name': 'Vulnerability List',
+                    'name': 'Vulnerable List',
                     'options': {
                         'fields': [
                             {
@@ -370,12 +370,12 @@ _METADATA = {
                             },
                             {
                                 'type': 'more',
-                                'key': 'show',
-                                'name': 'Vulnerability findings',
+                                'key': 'detail',
+                                'name': 'Vulnerable findings',
                                 "options": {
-                                    "sub_key": "find_some", 
+                                    "sub_key": "findings", 
                                     "layout": {
-                                        "name": "Vulnerability meta",
+                                        "name": "Vulnerable Status",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
@@ -416,12 +416,12 @@ _METADATA = {
                             },
                             {
                                 'type': 'more',
-                                'key': 'show',
+                                'key': 'detail',
                                 'name': 'Secure findings',
                                 "options": {
-                                    "sub_key": "find_some", 
+                                    "sub_key": "findings", 
                                     "layout": {
-                                        "name": "Secure meta",
+                                        "name": "Secure Status",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
