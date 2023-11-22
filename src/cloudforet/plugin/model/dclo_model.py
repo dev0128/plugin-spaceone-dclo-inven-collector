@@ -373,7 +373,7 @@ _METADATA = {
                                 'key': 'show',
                                 'name': 'Vulnerability findings',
                                 "options": {
-                                    "": "find_some", 
+                                    "sub_key": "find_some", 
                                     "layout": {
                                         "name": "Vulnerability meta",
                                         "type": "popup", 
@@ -425,7 +425,7 @@ _METADATA = {
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
-                                                "type": "raw-table", 
+                                                "type": "raw", 
                                             }
                                         }
                                     }
