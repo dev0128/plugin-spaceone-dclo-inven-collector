@@ -68,26 +68,26 @@ _METADATA = {
                                 'High': {
                                     'type': 'badge',
                                     'options': {
-                                        'background_color': 'coral.500'
+                                        'background_color': '#ff5344'
                                     }
                                 },
                                 'Medium': {
                                     'type': 'badge',
                                     'options': {
-                                        'background_color': 'peacock.500'
+                                        'background_color': '#ffa726'
                                     }
                                 },
                                 'Low': {
                                     'type': 'badge',
                                     'options': {
-                                        'background_color': 'indigo.500'
+                                        'background_color': '#f7d959'
                                     }
                                 }
                             }
                         },
                         {
                             'type': 'text',
-                            'key': 'data.findings',
+                            'key': 'data.findings_cnt',
                             'name': 'Findings',
                         },
                         {
@@ -247,74 +247,67 @@ _METADATA = {
         'sub_data': {
             'layouts': [
                 {
-                    "type": "list",
-                    "name": "교정 세부정보",
+                    'type': 'item',
+                    'name': '교정 세부정보',
                     'options': {
-                        'layouts': [
+                        'fields': [
                             {
-                                'name': '교정 세부정보',
-                                'type': 'item',
-                                'options':{
-                                    'fields': [
-                                        {
-                                            'type': 'text',
-                                            'key': 'data.code',
-                                            'name': 'Code'
-                                        },
-                                        {
-                                            'type': 'text',
-                                            'key': 'data.name',
-                                            'name': 'Name',
-                                        },
-                                        {
-                                            'type': 'text',
-                                            'key': 'data.category',
-                                            'name': 'Category',
-                                        },
-                                        {
-                                            'type': 'enum',
-                                            'key': 'data.report_lv',
-                                            'name': 'Severity',
-                                            'options': {
-                                                'High': {
-                                                    'type': 'badge',
-                                                    'options': {
-                                                        'background_color': 'coral.500'
-                                                    }
-                                                },
-                                                'Medium': {
-                                                    'type': 'badge',
-                                                    'options': {
-                                                        'background_color': 'peacock.500'
-                                                    }
-                                                },
-                                                'Low': {
-                                                    'type': 'badge',
-                                                    'options': {
-                                                        'background_color': 'indigo.500'
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    ],
+                                'type': 'text',
+                                'key': 'code',
+                                'name': 'Code'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'name',
+                                'name': 'Name',
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'category',
+                                'name': 'Category',
+                            },
+                            {
+                                'type': 'enum',
+                                'key': 'report_lv',
+                                'name': 'Severity',
+                                'options': {
+                                    'High': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': '#ff5344'
+                                        }
+                                    },
+                                    'Medium': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': '#ffa726'
+                                        }
+                                    },
+                                    'Low': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': '#f7d959'
+                                        }
+                                    }
                                 }
                             },
                             {
-                                'type': 'markdown',
-                                "name": "Description",
-                                'options': {'markdown': "{{data.code}}",}
+                                'type': 'text',
+                                'key': 'compliance_decs',
+                                'name': 'Description',
                             },
                             {
-                                'type': 'markdown',
-                                "name": "Rule Standard",
-                                'options': {'markdown': "{{data.rule_standard}}",}
+                                'type': 'text',
+                                'key': 'rule_standard',
+                                'name': 'Standard',
                             },
                             {
-                                'type': 'markdown',
-                                "name": "How to act",
-                                'options': {'markdown': "{{data.action_plan}}",}
+                                'type': 'text',
+                                'key': 'action_plan',
+                                'name': 'How to Act',
                             },
-                        ]
+                        ],
+                        'root_path': 'data'
                     }
                 },
                 {

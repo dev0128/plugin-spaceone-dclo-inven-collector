@@ -5,7 +5,7 @@ import json
 from time import sleep
 from uuid import uuid4
 
-from spaceone.core.error import ERROR_REQUIRED_PARAMETER, ERROR_REQUEST_TIMEOUT
+from spaceone.core.error import ERROR_REQUIRED_PARAMETER, ERROR_REQUEST_TIMEOUT, ERROR_TASK_METHOD
 from spaceone.core.connector import BaseConnector
 
 _LOGGER = logging.getLogger(__name__)
@@ -48,6 +48,9 @@ class DcloConnector(BaseConnector):
             if status == 'end':
                 result = content.get('result', {})
                 break 
+            if status == 'error':
+                raise ERROR_TASK_METHOD(name='D-CLO', method="fetch_compliance_results", params='options.provider') 
+
             
             if waiting_timer > PENDING_SECOND * TIME_LIMIT_MINUTE:
                 raise ERROR_REQUEST_TIMEOUT(key='options.provider') 
