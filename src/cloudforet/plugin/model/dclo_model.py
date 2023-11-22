@@ -247,140 +247,69 @@ _METADATA = {
         'sub_data': {
             'layouts': [
                 {
-                    "type": "list",
-                    "name": "교정 세부정보",
+                    'type': 'item',
+                    'name': '교정 세부정보',
                     'options': {
-                        'layouts': [
+                        'fields': [
                             {
-                                'name': '교정 세부정보',
-                                'type': 'item',
-                                'options':{
-                                    'fields': [
-                                        {
-                                            'type': 'text',
-                                            'key': 'data.code',
-                                            'name': 'Code'
-                                        },
-                                        {
-                                            'type': 'text',
-                                            'key': 'data.name',
-                                            'name': 'Name',
-                                        },
-                                        {
-                                            'type': 'text',
-                                            'key': 'data.category',
-                                            'name': 'Category',
-                                        },
-                                        {
-                                            'type': 'enum',
-                                            'key': 'data.report_lv',
-                                            'name': 'Severity',
-                                            'options': {
-                                                'High': {
-                                                    'type': 'badge',
-                                                    'options': {
-                                                        'background_color': '#ff5344'
-                                                    }
-                                                },
-                                                'Medium': {
-                                                    'type': 'badge',
-                                                    'options': {
-                                                        'background_color': '#ffa726'
-                                                    }
-                                                },
-                                                'Low': {
-                                                    'type': 'badge',
-                                                    'options': {
-                                                        'background_color': '#f7d959'
-                                                    }
-                                                }
-                                            }
-                                        },
-                                    ],
+                                'type': 'text',
+                                'key': 'code',
+                                'name': 'Code'
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'name',
+                                'name': 'Name',
+                            },
+                            {
+                                'type': 'text',
+                                'key': 'category',
+                                'name': 'Category',
+                            },
+                            {
+                                'type': 'enum',
+                                'key': 'report_lv',
+                                'name': 'Severity',
+                                'options': {
+                                    'High': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': '#ff5344'
+                                        }
+                                    },
+                                    'Medium': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': '#ffa726'
+                                        }
+                                    },
+                                    'Low': {
+                                        'type': 'badge',
+                                        'options': {
+                                            'background_color': '#f7d959'
+                                        }
+                                    }
                                 }
                             },
                             {
-                                'type': 'html',
-                                "name": "Compliance Description",
-                                'options': {'markdown': "{{data.compliance_decs}}",}
+                                'type': 'text',
+                                'key': 'compliance_decs',
+                                'name': 'Description',
                             },
                             {
-                                'type': 'html',
-                                "name": "Rule Standard",
-                                'options': {'markdown': "{{data.rule_standard}}",}
+                                'type': 'text',
+                                'key': 'rule_standard',
+                                'name': 'Standard',
                             },
                             {
-                                'type': 'html',
-                                "name": "How to act",
-                                'options': {'markdown': "{{data.action_plan}}",}
+                                'type': 'text',
+                                'key': 'action_plan',
+                                'name': 'How to Act',
                             },
-                        ]
+                        ],
+                        'root_path': 'data'
                     }
                 },
-                # {
-                #     'type': 'item',
-                #     'name': '교정 세부정보',
-                #     'options': {
-                #         'fields': [
-                #             {
-                #                 'type': 'text',
-                #                 'key': 'code',
-                #                 'name': 'Code'
-                #             },
-                #             {
-                #                 'type': 'text',
-                #                 'key': 'name',
-                #                 'name': 'Name',
-                #             },
-                #             {
-                #                 'type': 'text',
-                #                 'key': 'category',
-                #                 'name': 'Category',
-                #             },
-                #             {
-                #                 'type': 'enum',
-                #                 'key': 'report_lv',
-                #                 'name': 'Severity',
-                #                 'options': {
-                #                     'High': {
-                #                         'type': 'badge',
-                #                         'options': {
-                #                             'background_color': '#ff5344'
-                #                         }
-                #                     },
-                #                     'Medium': {
-                #                         'type': 'badge',
-                #                         'options': {
-                #                             'background_color': '#ffa726'
-                #                         }
-                #                     },
-                #                     'Low': {
-                #                         'type': 'badge',
-                #                         'options': {
-                #                             'background_color': '#f7d959'
-                #                         }
-                #                     }
-                #                 }
-                #             },
-                #             {
-                #                 'type': 'text',
-                #                 'key': 'compliance_decs',
-                #                 'name': 'Description',
-                #             },
-                #             {
-                #                 'type': 'text',
-                #                 'key': 'rule_standard',
-                #                 'name': 'Standard',
-                #             },
-                #             {
-                #                 'type': 'text',
-                #                 'key': 'action_plan',
-                #                 'name': 'How to Act',
-                #             },
-                #         ],
-                #         'root_path': 'data'
-                #     }
-                # },
                 {
                     'type': 'table',
                     'name': 'Compliance',
@@ -444,7 +373,7 @@ _METADATA = {
                                 'key': 'show',
                                 'name': 'Vulnerability findings',
                                 "options": {
-                                    "sub_key": "findings", 
+                                    "": "find_some", 
                                     "layout": {
                                         "name": "Vulnerability meta",
                                         "type": "popup", 
@@ -490,13 +419,13 @@ _METADATA = {
                                 'key': 'show',
                                 'name': 'Secure findings',
                                 "options": {
-                                    "sub_key": "findings", 
+                                    "sub_key": "find_some", 
                                     "layout": {
                                         "name": "Secure meta",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
-                                                "type": "raw", 
+                                                "type": "raw-table", 
                                             }
                                         }
                                     }

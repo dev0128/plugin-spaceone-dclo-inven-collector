@@ -122,14 +122,16 @@ class DcloManager(CollectorManager):
         
         for key in finding:
             if key in ['compliance_decs','rule_standard','action_plan',]:
-                finding[key] = self._format_text_and_json(finding[key])            
+                finding[key] = self._format_text_and_json(finding[key])      
+            if key in ['flag_key', 'good_key']:
+                finding[key] = [{**row, 'find_some': row['findings'] } for row in finding[key]]
 
         return finding
 
     
 
     def _format_text_and_json(self, text):
-        text = text.replace("\r\n", "<br/> ")
+        text = text.replace("\r\n", " ")
         text = text.replace("b:", "")
         text = text.replace("b-h2:", "")
         text = text.replace("h2:", "")
