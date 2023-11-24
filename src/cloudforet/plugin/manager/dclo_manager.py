@@ -124,25 +124,20 @@ class DcloManager(CollectorManager):
         for key in finding:
             if key in ['compliance_decs','rule_standard','action_plan',]:
                 finding[key] = self._format_text_and_json(finding[key])      
-            if key in ['flag_key', 'good_key']:
-                finding[key] = [{**row, 'popup_data': json.dumps(row['findings'], indent=4, separators=(',', ': ')) } for row in finding[key]]
+            # if key in ['flag_key', 'good_key']:
+            #     finding[key] = [{**row, 'popup_data': json.dumps(row['findings'], indent=4, separators=(',', ': ')) } for row in finding[key]]
 
         return finding
 
     
 
     def _format_text_and_json(self, text):
-        patterns = {
-            'h1:': 'h2',
-            'b-h2:': 'h3',
-            'h2:': 'h3',
-        }
-
-        # 각 패턴에 대해 반복하며 정규 표현식을 사용하여 문자열을 변경
-        for pattern, tag in patterns.items():
-            text = re.sub(r'{}([^:\n]*)'.format(pattern), r'<{}>\1</{}>'.format(tag, tag), text)
-        
-        text = text.replace("\r\n", "<br/>")
+        text = text.replace("\r\n", " ")
+        text = text.replace("b:", "")
+        text = text.replace("b-h2:", "")
+        text = text.replace("h2:", "")
+        text = text.replace("h1:", "")
 
         return text
+
         
