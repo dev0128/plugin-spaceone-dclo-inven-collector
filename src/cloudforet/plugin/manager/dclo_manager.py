@@ -124,38 +124,25 @@ class DcloManager(CollectorManager):
         for key in finding:
             if key in ['compliance_decs','rule_standard','action_plan',]:
                 finding[key] = self._format_text_and_json(finding[key])      
-            # if key in ['flag_key', 'good_key']:
-            #     finding[key] = [{**row, 'findings': json.dumps(row['findings']) } for row in finding[key]]
+            if key in ['flag_key', 'good_key']:
+                finding[key] = [{**row, 'popup_data': json.dumps(row['findings'], indent=4, separators=(',', ': ')) } for row in finding[key]]
 
         return finding
 
     
 
     def _format_text_and_json(self, text):
-        text = text.replace("\r\n", " ")
-        text = text.replace("b:", "")
-        text = text.replace("b-h2:", "")
-        text = text.replace("h2:", "")
-        text = text.replace("h1:", "")
+        patterns = {
+            'h1:': 'h2',
+            'b-h2:': 'h3',
+            'h2:': 'h3',
+        }
+
+        # 각 패턴에 대해 반복하며 정규 표현식을 사용하여 문자열을 변경
+        for pattern, tag in patterns.items():
+            text = re.sub(r'{}([^:\n]*)'.format(pattern), r'<{}>\1</{}>'.format(tag, tag), text)
+        
+        text = text.replace("\r\n", "<br/>")
 
         return text
-
-        # Replace 'h1:' with '#'
-        text = text.replace("h1:", "# ")
-
-        text = text.replace(r"\r\n", "<br/> ")
-
-        # Replace 'h2:' and 'b-h2:' with '##'
-        text = re.sub(r"\bh2:|\bb-h2:", "## ", text)
-
-        # Remove 'b:'
-        text = text.replace("b:", "")
-
-        # Regular expression to find a JSON object and ensure it is not part of another word
-        json_pattern = r"(?<!\w)({.*?})(?=\Z|: [^:])"
         
-        # Replace function to add '```' around the JSON content
-        def replace_func(match):
-            return "```\n" + match.group(1).strip() + "\n```"
-
-        return re.sub(json_pattern, replace_func, text, flags=re.DOTALL)
