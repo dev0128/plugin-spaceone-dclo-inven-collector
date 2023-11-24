@@ -373,7 +373,7 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Vulnerable findings',
                                 "options": {
-                                    "sub_key": "findings",
+                                    "sub_key": "resource_type",
                                     "layout": {
                                         "name": "Vulnerable Status",
                                         "type": "popup", 
@@ -419,7 +419,7 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Secure findings',
                                 "options": {
-                                    "sub_key": "findings", 
+                                    "sub_key": "resource_type", 
                                     "layout": {
                                         "name": "Secure Status",
                                         "type": "popup", 
