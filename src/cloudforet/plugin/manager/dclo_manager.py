@@ -131,6 +131,7 @@ class DcloManager(CollectorManager):
                         "id": row['id'], 
                         "name": row['name'],
                         "resource_type": row['resource_type'],
+                        "detail": row['detail'],
                         'popup_data': json.dumps(row['findings'], indent=4, separators=(',', ': ')) 
                     } for row in finding[key]]
 
