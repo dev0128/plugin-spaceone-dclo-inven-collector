@@ -373,7 +373,7 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Vulnerable findings',
                                 "options": {
-                                    "key": "popup_data",
+                                    "sub_key": "data.good_key.popup_data", 
                                     "layout": {
                                         "name": "Vulnerable Status",
                                         "type": "popup", 
@@ -419,7 +419,7 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Secure findings',
                                 "options": {
-                                    "key": "popup_data", 
+                                    "sub_key": "data.good_key.popup_data", 
                                     "layout": {
                                         "name": "Secure Status",
                                         "type": "popup", 
