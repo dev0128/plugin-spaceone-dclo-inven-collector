@@ -373,13 +373,20 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Vulnerable findings',
                                 "options": {
-                                    "sub_key": "data.good_key.popup_data", 
+                                    "sub_key": "popup_data", 
                                     "layout": {
                                         "name": "Vulnerable Status",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
-                                                "type": "raw", 
+                                                "type": "item",
+                                                'fields': [
+                                                                {
+                                                                    'type': 'text',
+                                                                    'key': 'popup_data',
+                                                                    'name': 'Rule ID'
+                                                                },
+                                                        ]
                                             }
                                         }
                                     }
@@ -419,13 +426,20 @@ _METADATA = {
                                 'key': 'detail',
                                 'name': 'Secure findings',
                                 "options": {
-                                    "sub_key": "data.good_key.popup_data", 
+                                    "sub_key": "popup_data", 
                                     "layout": {
                                         "name": "Secure Status",
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
-                                                "type": "raw", 
+                                                "type": "item",
+                                                'fields': [
+                                                                {
+                                                                    'type': 'text',
+                                                                    'key': 'popup_data',
+                                                                    'name': 'Rule ID'
+                                                                },
+                                                        ]
                                             }
                                         }
                                     }
