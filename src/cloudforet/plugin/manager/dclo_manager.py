@@ -125,7 +125,14 @@ class DcloManager(CollectorManager):
             if key in ['compliance_decs','rule_standard','action_plan',]:
                 finding[key] = self._format_text_and_json(finding[key])      
             if key in ['flag_key', 'good_key']:
-                finding[key] = [{**row, 'popup_data': json.dumps(row['findings'], indent=4, separators=(',', ': ')) } for row in finding[key]]
+                finding[key] = [
+                    {
+                        "region": row['region'], 
+                        "id": row['id'], 
+                        "name": row['name'],
+                        "resource_type": row['resource_type'],
+                        'popup_data': json.dumps(row['findings'], indent=4, separators=(',', ': ')) 
+                    } for row in finding[key]]
 
         return finding
 
