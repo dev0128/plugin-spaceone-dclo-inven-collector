@@ -379,14 +379,7 @@ _METADATA = {
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
-                                                "type": "item",
-                                                'fields': [
-                                                                {
-                                                                    'type': 'text',
-                                                                    'key': 'popup_data',
-                                                                    'name': 'Rule ID'
-                                                                },
-                                                        ]
+                                                "type": "raw", 
                                             }
                                         }
                                     }
@@ -432,14 +425,7 @@ _METADATA = {
                                         "type": "popup", 
                                         "options": { 
                                             "layout": { 
-                                                "type": "item",
-                                                'fields': [
-                                                                {
-                                                                    'type': 'text',
-                                                                    'key': 'popup_data',
-                                                                    'name': 'Rule ID'
-                                                                },
-                                                        ]
+                                                "type": "raw", 
                                             }
                                         }
                                     }
